@@ -1,0 +1,33 @@
+.header {
+    font-size: 150px;
+    color: rgb(135, 20, 20);
+    -unity-font: url("project://database/Assets/Art/youmurdererbb_reg.ttf?fileID=12800000&guid=5bea0333535cc4d7791dce07e42f2dfb&type=3#youmurdererbb_reg");
+    -unity-font-definition: initial;
+    align-self: center;
+    margin-top: 100px;
+    justify-content: flex-start;
+}
+
+.button {
+    font-size: 40px;
+    width: 220px;
+    height: 60px;
+    align-self: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-image: url("project://database/Assets/Gentleland/SteampunkUI/Art/Steampunk_UI_Dialogue_3.png?fileID=5185045578303202313&guid=44a8b76b70d48db4aa2dcac3eb64eb88&type=3#Steampunk_UI_Dialogue_3_3");
+    -unity-background-image-tint-color: rgb(150, 166, 176);
+    background-color: rgba(0, 0, 0, 0);
+    margin-top: 50px;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    transition-duration: 0.1s;
+}
+
+.button:hover {
+    -unity-background-image-tint-color: rgb(109, 122, 130);
+}
