@@ -407,6 +407,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6990047599074575729, guid: acd316d7610bdde4c9cfc7b2e6c2c7d7, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1979354138}
     - target: {fileID: 7823035261699283482, guid: acd316d7610bdde4c9cfc7b2e6c2c7d7, type: 3}
       propertyPath: m_Name
       value: Dajjal
@@ -1254,6 +1258,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6948bb9018d1f74885805c879287bcd, type: 3}
+--- !u!4 &1979354138 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6201772168399923116, guid: b5e923aff16470147a7707f619f08ce5, type: 3}
+  m_PrefabInstance: {fileID: 103496928}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2063605340
 PrefabInstance:
   m_ObjectHideFlags: 0
