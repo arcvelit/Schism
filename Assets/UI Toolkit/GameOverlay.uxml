@@ -14,5 +14,8 @@
         <ui:VisualElement name="Crosshair" style="flex-grow: 1; width: 5%; height: 5%; position: absolute; left: 47.5%; top: 47.5%; align-items: center; justify-content: center;">
             <ui:Label tabindex="-1" text="." parse-escape-sequences="true" display-tooltip-when-elided="true" name="CrosshairText" style="font-size: 40px; justify-content: flex-start; align-items: center; -unity-text-align: lower-left; -unity-font-style: normal; color: rgb(255, 255, 255);" />
         </ui:VisualElement>
+        <ui:VisualElement name="InteractBox" style="flex-grow: 1; width: 100%; height: 5%; position: absolute; left: 0; top: 53%; align-items: center; justify-content: center;">
+            <ui:Label tabindex="-1" text="(E) Take" parse-escape-sequences="true" display-tooltip-when-elided="true" name="InteractLabel" style="font-size: 30px; justify-content: flex-start; align-items: center; -unity-text-align: lower-left; -unity-font-style: normal; color: rgb(255, 255, 255);" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

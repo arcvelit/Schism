@@ -8,15 +8,18 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
     public static string CROSSHAIR_CHAR = "•";
-    public static string SELECT_CHAR ="▣";
 
     public static bool messaging;
+    public static bool lookingat;
+
+    public static Collectible lookatObject;
 
 
     public UIDocument messages;
-    public Label gameMessages;
-    public VisualElement gameMessageContainer;
+    private Label gameMessages;
+    private VisualElement gameMessageContainer;
     public UIDocument doc;
+    private Label interactionlabel;
     private Label crosshair;
     private Label batteryCounter;
     private Label manuscriptsCounter;
@@ -44,12 +47,14 @@ public class UIManager : MonoBehaviour
         gameMessageContainer.style.backgroundColor = new StyleColor(newColor);
 
 
+        interactionlabel = doc.rootVisualElement.Q("InteractLabel") as Label;
         crosshair = doc.rootVisualElement.Q("CrosshairText") as Label;
         batteryCounter = doc.rootVisualElement.Q("BatteryCounter") as Label;
         manuscriptsCounter = doc.rootVisualElement.Q("ManuscriptCounter") as Label;
         batteryImage = doc.rootVisualElement.Q("Battery") as VisualElement;
         staminaBar = doc.rootVisualElement.Q("StaminaBar") as ProgressBar;
 
+        interactionlabel.text = "";
         staminaBar.value = 100;
         crosshair.text = CROSSHAIR_CHAR;
         batteryCounter.text = "x00";
@@ -63,7 +68,9 @@ public class UIManager : MonoBehaviour
 
     public void ShowInteraction(string tag)
     {
-        crosshair.text = SELECT_CHAR;
+        // Add interact with (e)
+        interactionlabel.text = "(E) Pick up";
+        lookingat = true;
 
         switch (tag)
         {
@@ -77,6 +84,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void SetLookatCollectible(Collectible collectible) 
+    {
+        lookatObject = collectible;
+    }
+
     void Update() 
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -86,6 +98,11 @@ public class UIManager : MonoBehaviour
                 messaging = true;
                 StartCoroutine(GameMessage("Hello, World!\nI hate working with Unity..."));
             }
+        }
+
+        if (lookingat && Input.GetKeyDown(KeyCode.E)) 
+        {
+            lookatObject.Collect();
         }
     }
 
@@ -116,7 +133,9 @@ public class UIManager : MonoBehaviour
 
     public void RemoveInteraction()
     {
-        crosshair.text = CROSSHAIR_CHAR;
+        // Remove interact with (e)
+        lookingat = false;
+        interactionlabel.text = "";
     }
 
     public void UpdateBatteries(int batteries)
