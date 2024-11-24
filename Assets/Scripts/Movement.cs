@@ -21,7 +21,7 @@ public class Movement : MonoBehaviour
     float gravity = 2 * -9.81f;
     bool isGrounded;
 
-
+    [HideInInspector] public bool isRunning;
     public float MAX_STAMINA = 5;
     public float stamina = 0;
     public int staminaPercent => (int)(100 * stamina/MAX_STAMINA);
@@ -30,6 +30,7 @@ public class Movement : MonoBehaviour
     {
         stamina = MAX_STAMINA;
         speed = WALKING_SPEED;
+        isRunning = false;
     }
 
 
@@ -55,12 +56,14 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            isRunning = true;
             speed = RUNNING_SPEED;
             stamina -= Time.deltaTime;
             // UIManager.Instance.UpdateStaminaBar(staminaPercent);
         }
         else 
         {
+            isRunning = false;
             speed = WALKING_SPEED;
             stamina = stamina < 0 ? 0 : (stamina > MAX_STAMINA ? MAX_STAMINA : stamina + Time.deltaTime);
             // UIManager.Instance.UpdateStaminaBar(staminaPercent);
