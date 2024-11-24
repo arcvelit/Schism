@@ -11,12 +11,12 @@ public class AIMovement : MonoBehaviour
     public float roamingSpeed = 0.0f;//3.5f;
     public float roamingRange = 10f;
     public float chaseSpeed = 5.0f;
-    public float detectionRange = 10f;
-    public float runningHearRange = 15f;
-    public float seeRange = 25f;
-    public float seeAngle = 45f;
+    public float detectionRange = 5f;
+    public float runningHearRange = 10f;
+    public float seeRange = 10f;
+    public float seeAngle = 30f;
     public float soundDetectionRange = 15f;
-    public float timeInactive = 3f;
+    public float timeInactive = 1f;
 
     private NavMeshAgent agent;
     private Vector3 roamingVector;
@@ -129,7 +129,7 @@ public class AIMovement : MonoBehaviour
         // Only if the player enter the safe space while being chased, otherwise the monster should continue to roam as always
 
         Vector3 directionToPlayer = player.position - transform.position;
-        float distanceToPlayer = directionToPlayer.magnitude;
+        float distanceToPlayer = Vector3.Distance(player.position, transform.position);
         directionToPlayer.Normalize();
         float angleOfPlayer = Vector3.Angle(transform.forward, directionToPlayer);
 
@@ -151,9 +151,10 @@ public class AIMovement : MonoBehaviour
         if(distanceToPlayer <= seeRange && angleOfPlayer <= seeAngle)
         {
             RaycastHit hit;
-            if(Physics.Raycast(transform.position, directionToPlayer, out hit, seeAngle)) 
+            if(Physics.Raycast(transform.position, directionToPlayer, out hit, seeRange)) 
             {
-                if(hit.transform == player)
+                Debug.Log(distanceToPlayer);
+                if(hit.transform.parent == player)
                 {
                     Debug.Log("Monster sees the player");
                     return true;
