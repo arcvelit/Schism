@@ -235,10 +235,8 @@ public class AIMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        // Debug.Log("Collision");
         if(collision.gameObject.CompareTag("Player"))
         {
-            // Debug.Log("Collision with player");
             agent.isStopped = true;
 
             // GameOver, temporary just load back the scene
