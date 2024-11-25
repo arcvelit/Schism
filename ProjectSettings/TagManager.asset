@@ -8,6 +8,7 @@ TagManager:
   - Battery
   - Artifact
   - Manuscript
+  - OOB
   layers:
   - Default
   - TransparentFX

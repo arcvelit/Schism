@@ -91,15 +91,6 @@ public class UIManager : MonoBehaviour
 
     void Update() 
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (!messaging) 
-            {
-                messaging = true;
-                StartCoroutine(GameMessage("Hello, World!\nI hate working with Unity..."));
-            }
-        }
-
         if (lookingat && Input.GetKeyDown(KeyCode.E)) 
         {
             lookatObject.Collect();
@@ -150,8 +141,12 @@ public class UIManager : MonoBehaviour
 
 
 
-IEnumerator GameMessage(string message) 
+public IEnumerator GameMessage(string message) 
 {
+    if (messaging) yield break;
+
+    messaging = true;
+    
     yield return StartCoroutine(IncreaseAlpha(0.7f, 1.0f));
     yield return StartCoroutine(WriteMessage(message));
     yield return new WaitForSeconds(1.0f);
