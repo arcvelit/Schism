@@ -5,17 +5,12 @@ public class Collectible : MonoBehaviour
 
     private bool destroyed;
 
-    void OnMouseDown()
-    {
-        // Trigger collection logic
-        Collect();
-        OnMouseExit();
-    }
-
     void OnMouseOver()
     {
-        if (!destroyed)
-        UIManager.Instance.ShowInteraction(gameObject.tag);
+        if (!destroyed) {
+            UIManager.Instance.SetLookatCollectible(this);
+            UIManager.Instance.ShowInteraction(gameObject.tag);
+        }
     }
 
     void OnMouseExit()
@@ -24,10 +19,12 @@ public class Collectible : MonoBehaviour
     }
 
 
-    void Collect()
+    public void Collect()
     {
-        InventoryManager.Instance.AddToInventory(gameObject.tag); 
-        Destroy(gameObject);
-        destroyed = true;
+        if (!destroyed) {
+            InventoryManager.Instance.AddToInventory(gameObject.tag); 
+            Destroy(gameObject);
+            destroyed = true;
+        }
     }
 }
