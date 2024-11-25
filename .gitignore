@@ -78,6 +78,12 @@ crashlytics-build.properties
 # Custom Package
 /[Aa]ssets/[Cc]ustom[Pp]ackages/*
 
+# Asset Packages
+/[Aa]ssets/[Ff]looded_[Gg]rounds/*
+/[Aa]ssets/[Ff]orst/*
+/[Aa]ssets/[Ff]urniture/*
+/[Aa]ssets/[Tt]errain[Ss]ample[Aa]ssets/*
+
 .vscode/*
 .vsconfig
 
