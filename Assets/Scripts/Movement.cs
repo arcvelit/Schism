@@ -47,7 +47,6 @@ public class Movement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        Vector3 move = transform.right * x + transform.forward * z;
 
         if(Input.GetButtonDown("Jump") && isGrounded) 
         {
@@ -69,8 +68,11 @@ public class Movement : MonoBehaviour
             // UIManager.Instance.UpdateStaminaBar(staminaPercent);
         }
 
-
-
+        Vector3 move = transform.right * x + transform.forward * z;
+        if (move.magnitude > 1)
+        {
+            move = move.normalized;
+        }
         controller.Move(move * speed * Time.deltaTime);
 
         velocity.y += gravity * Time.deltaTime;
