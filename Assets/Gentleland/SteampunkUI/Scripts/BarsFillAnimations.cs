@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace Gentleland.StemapunkUI.DemoAndExample
 {
@@ -11,6 +13,7 @@ namespace Gentleland.StemapunkUI.DemoAndExample
         float[] shifts;
         float[] fillTimeInSeconds;
         float[] durations = { 0.75f, 1.0f, 1.2f, 1.5f, 2.0f, 3.0f };
+        [Obsolete("Obsolete")]
         private void Start()
         {
             sliders = FindObjectsOfType<Slider>();
