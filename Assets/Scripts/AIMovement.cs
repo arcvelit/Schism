@@ -97,13 +97,15 @@ public class AIMovement : MonoBehaviour
 
     public void IncreaseDifficulty() 
     {
-        System.Math.Clamp(currentDifficulty++, 0, 4);
+        currentDifficulty++;
+        currentDifficulty = System.Math.Clamp(currentDifficulty, 0, 4);
         Debug.Log("Current Difficulty : " + currentDifficulty);
     }
 
     public void DecreaseDifficulty()
     {
-        System.Math.Clamp(currentDifficulty--, 0, 4);
+        currentDifficulty--;
+        currentDifficulty = System.Math.Clamp(currentDifficulty, 0, 4);
         Debug.Log("Current Difficulty : " + currentDifficulty);
     }
 

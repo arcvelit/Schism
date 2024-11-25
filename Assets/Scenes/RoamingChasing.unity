@@ -534,6 +534,22 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 957396305}
+    - target: {fileID: 6990047599074575729, guid: acd316d7610bdde4c9cfc7b2e6c2c7d7, type: 3}
+      propertyPath: seeAngle
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990047599074575729, guid: acd316d7610bdde4c9cfc7b2e6c2c7d7, type: 3}
+      propertyPath: seeRange
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990047599074575729, guid: acd316d7610bdde4c9cfc7b2e6c2c7d7, type: 3}
+      propertyPath: detectionRange
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990047599074575729, guid: acd316d7610bdde4c9cfc7b2e6c2c7d7, type: 3}
+      propertyPath: runningHearRange
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 7823035261699283482, guid: acd316d7610bdde4c9cfc7b2e6c2c7d7, type: 3}
       propertyPath: m_Name
       value: Dajjal
