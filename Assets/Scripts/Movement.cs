@@ -9,6 +9,8 @@ public class Movement : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float jumpHeight;
 
+    public Transform spawnPoint;
+
     float WALKING_SPEED = 6;
     float RUNNING_SPEED = 9;
 

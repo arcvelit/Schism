@@ -140,6 +140,10 @@ public class UIManager : MonoBehaviour
     }
 
 
+public void ResetMessage()
+{
+    gameMessages.text = "";
+}
 
 public IEnumerator GameMessage(string message) 
 {
@@ -151,7 +155,7 @@ public IEnumerator GameMessage(string message)
     yield return StartCoroutine(WriteMessage(message));
     yield return new WaitForSeconds(1.0f);
 
-    gameMessages.text = "";
+    ResetMessage();
 
     yield return StartCoroutine(IncreaseAlpha(0.0f, 1.0f));
 
@@ -159,7 +163,7 @@ public IEnumerator GameMessage(string message)
 
 }
 
-IEnumerator IncreaseAlpha(float targetAlpha, float duration)
+public IEnumerator IncreaseAlpha(float targetAlpha, float duration)
     {
         Color initialColor = gameMessageContainer.resolvedStyle.backgroundColor;
         float startAlpha = initialColor.a;
@@ -183,7 +187,7 @@ IEnumerator IncreaseAlpha(float targetAlpha, float duration)
     }
 
 
-IEnumerator WriteMessage(string message)
+public IEnumerator WriteMessage(string message)
     {
         gameMessages.text = "";
         int messageLength = message.Length;

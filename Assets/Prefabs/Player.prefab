@@ -278,6 +278,7 @@ GameObject:
   - component: {fileID: 2877485637085551872}
   - component: {fileID: 313788197562748243}
   - component: {fileID: -8664604384474604606}
+  - component: {fileID: -6912609622671649695}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -370,6 +371,18 @@ MonoBehaviour:
   BATTERY_CAP: 5
   batteries: 0
   manuscripts: 0
+--- !u!114 &-6912609622671649695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6343211798169317461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 273f8177077c6aa4d95664891529cfcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6579133867362762820
 GameObject:
   m_ObjectHideFlags: 0
