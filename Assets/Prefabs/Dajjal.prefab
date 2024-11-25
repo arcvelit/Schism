@@ -2839,6 +2839,9 @@ MonoBehaviour:
   roamingRange: 10
   chaseSpeed: 5
   detectionRange: 10
+  runningHearRange: 15
+  seeRange: 15
+  seeAngle: 30
   soundDetectionRange: 15
   timeInactive: 3
 --- !u!195 &7066694985606105855

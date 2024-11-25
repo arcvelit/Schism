@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Overlay.uss?fileID=7433441132597879392&amp;guid=8a7d6ea3e3ffd4d3a87d3b86817fbc5f&amp;type=3#Overlay" />
+    <ui:VisualElement name="Container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+        <ui:VisualElement name="MessageElement" style="flex-grow: 1; width: 50%; height: 10%; position: absolute; left: auto; top: 35%; align-items: center; justify-content: center; align-self: center;">
+            <ui:Label tabindex="-1" text="You feel a compelling force towards the fucking city " parse-escape-sequences="true" display-tooltip-when-elided="true" name="MessageBox" style="font-size: 30px; justify-content: flex-start; align-items: center; -unity-text-align: lower-center; -unity-font-style: normal; color: rgb(255, 255, 255); width: 100%; height: 100%; -unity-font-definition: url(&quot;project://database/Assets/Gentleland/SteampunkUI/Fonts/RobotoSlab/RobotoSlab.ttf?fileID=12800000&amp;guid=130d0ab50b4e89f46bffbc016fdcea68&amp;type=3#RobotoSlab&quot;); text-overflow: clip;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
