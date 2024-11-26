@@ -7,13 +7,17 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
+
     public static string CROSSHAIR_CHAR = "•";
 
     public static bool messaging;
-    public static bool lookingat;
+    public static bool lookingatitem;
+    public static bool lookingathousedoor;
 
     public static Collectible lookatObject;
+    public static HouseDoor lookatHouseDoor;
 
+    public GameObject player;
 
     public UIDocument messages;
     private Label gameMessages;
@@ -66,22 +70,21 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void ShowInteraction(string tag)
+    public void ShowCollectibleInteraction()
     {
-        // Add interact with (e)
         interactionlabel.text = "(E) Pick up";
-        lookingat = true;
+        lookingatitem = true;
+    }
 
-        switch (tag)
-        {
-            case "Battery":
-            
-            break;
+    public void ShowHouseDoorInteraction()
+    {
+        interactionlabel.text = $"(E) {(lookatHouseDoor.opened ? "Close" : "Open")} door";
+        lookingathousedoor = true;
+    }
 
-            case "Artifact":
-
-            break;
-        }
+    public void SetLookatHouseDoor(HouseDoor door) 
+    {
+        lookatHouseDoor = door;
     }
 
     public void SetLookatCollectible(Collectible collectible) 
@@ -91,9 +94,14 @@ public class UIManager : MonoBehaviour
 
     void Update() 
     {
-        if (lookingat && Input.GetKeyDown(KeyCode.E)) 
+        if (lookingatitem && Input.GetKeyDown(KeyCode.E)) 
         {
             lookatObject.Collect();
+        }
+        
+        if (lookingathousedoor && Input.GetKeyDown(KeyCode.E)) 
+        {
+            lookatHouseDoor.Interact();
         }
     }
 
@@ -125,7 +133,8 @@ public class UIManager : MonoBehaviour
     public void RemoveInteraction()
     {
         // Remove interact with (e)
-        lookingat = false;
+        lookingatitem = false;
+        lookingathousedoor = false;
         interactionlabel.text = "";
     }
 

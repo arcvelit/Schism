@@ -79,5 +79,10 @@ public class Movement : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
+    public void BackToSpawn()
+    {
+        gameObject.transform.position = spawnPoint.position;
+    }
+
 
 }
