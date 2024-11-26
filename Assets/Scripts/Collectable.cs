@@ -3,13 +3,15 @@ using UnityEngine;
 public class Collectible : MonoBehaviour
 {
 
+    
+
     private bool destroyed;
 
     void OnMouseOver()
     {
         if (!destroyed) {
             UIManager.Instance.SetLookatCollectible(this);
-            UIManager.Instance.ShowInteraction(gameObject.tag);
+            UIManager.Instance.ShowCollectibleInteraction();
         }
     }
 

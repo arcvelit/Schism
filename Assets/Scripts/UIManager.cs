@@ -7,13 +7,17 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
+
     public static string CROSSHAIR_CHAR = "•";
 
     public static bool messaging;
-    public static bool lookingat;
+    public static bool lookingatitem;
+    public static bool lookingathousedoor;
 
     public static Collectible lookatObject;
+    public static HouseDoor lookatHouseDoor;
 
+    public GameObject player;
 
     public UIDocument messages;
     private Label gameMessages;
@@ -66,22 +70,21 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void ShowInteraction(string tag)
+    public void ShowCollectibleInteraction()
     {
-        // Add interact with (e)
         interactionlabel.text = "(E) Pick up";
-        lookingat = true;
+        lookingatitem = true;
+    }
 
-        switch (tag)
-        {
-            case "Battery":
-            
-            break;
+    public void ShowHouseDoorInteraction()
+    {
+        interactionlabel.text = $"(E) {(lookatHouseDoor.opened ? "Close" : "Open")} door";
+        lookingathousedoor = true;
+    }
 
-            case "Artifact":
-
-            break;
-        }
+    public void SetLookatHouseDoor(HouseDoor door) 
+    {
+        lookatHouseDoor = door;
     }
 
     public void SetLookatCollectible(Collectible collectible) 
@@ -91,18 +94,14 @@ public class UIManager : MonoBehaviour
 
     void Update() 
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (!messaging) 
-            {
-                messaging = true;
-                StartCoroutine(GameMessage("Hello, World!\nI hate working with Unity..."));
-            }
-        }
-
-        if (lookingat && Input.GetKeyDown(KeyCode.E)) 
+        if (lookingatitem && Input.GetKeyDown(KeyCode.E)) 
         {
             lookatObject.Collect();
+        }
+        
+        if (lookingathousedoor && Input.GetKeyDown(KeyCode.E)) 
+        {
+            lookatHouseDoor.Interact();
         }
     }
 
@@ -134,7 +133,8 @@ public class UIManager : MonoBehaviour
     public void RemoveInteraction()
     {
         // Remove interact with (e)
-        lookingat = false;
+        lookingatitem = false;
+        lookingathousedoor = false;
         interactionlabel.text = "";
     }
 
@@ -149,14 +149,22 @@ public class UIManager : MonoBehaviour
     }
 
 
-
-IEnumerator GameMessage(string message) 
+public void ResetMessage()
 {
+    gameMessages.text = "";
+}
+
+public IEnumerator GameMessage(string message) 
+{
+    if (messaging) yield break;
+
+    messaging = true;
+    
     yield return StartCoroutine(IncreaseAlpha(0.7f, 1.0f));
     yield return StartCoroutine(WriteMessage(message));
     yield return new WaitForSeconds(1.0f);
 
-    gameMessages.text = "";
+    ResetMessage();
 
     yield return StartCoroutine(IncreaseAlpha(0.0f, 1.0f));
 
@@ -164,7 +172,7 @@ IEnumerator GameMessage(string message)
 
 }
 
-IEnumerator IncreaseAlpha(float targetAlpha, float duration)
+public IEnumerator IncreaseAlpha(float targetAlpha, float duration)
     {
         Color initialColor = gameMessageContainer.resolvedStyle.backgroundColor;
         float startAlpha = initialColor.a;
@@ -188,7 +196,7 @@ IEnumerator IncreaseAlpha(float targetAlpha, float duration)
     }
 
 
-IEnumerator WriteMessage(string message)
+public IEnumerator WriteMessage(string message)
     {
         gameMessages.text = "";
         int messageLength = message.Length;
