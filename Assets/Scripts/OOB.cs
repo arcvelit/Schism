@@ -10,22 +10,8 @@ public class OOB : MonoBehaviour
     {
         if (other.CompareTag("OOB")) 
         {
-            StartCoroutine(BackToSpawn());
+            StartCoroutine(UIManager.Instance.GameMessage(OOB_MESSAGE, 1f, GetComponent<Movement>()));
         }
-    }
-
-    IEnumerator BackToSpawn() 
-    {
-        yield return StartCoroutine(UIManager.Instance.IncreaseAlpha(1f, 1.0f));
-        yield return StartCoroutine(UIManager.Instance.WriteMessage(OOB_MESSAGE));
-        yield return new WaitForSeconds(1.0f); 
-
-        // Teleport
-        GetComponent<Movement>().BackToSpawn();
-
-        UIManager.Instance.ResetMessage();   
-
-        yield return StartCoroutine(UIManager.Instance.IncreaseAlpha(0f, 1.0f));
     }
 
 }
