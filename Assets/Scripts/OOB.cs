@@ -20,7 +20,7 @@ public class OOB : MonoBehaviour
         yield return new WaitForSeconds(1.0f); 
 
         // Teleport
-        gameObject.transform.position = GetComponent<Movement>().spawnPoint.position;
+        GetComponent<Movement>().BackToSpawn();
 
         UIManager.Instance.ResetMessage();   
 
