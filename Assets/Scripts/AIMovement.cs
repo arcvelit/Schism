@@ -115,7 +115,7 @@ public class AIMovement : MonoBehaviour
         agent.speed = roamingSpeed;
         roamningTimer += Time.deltaTime;
 
-        if(!agent.pathPending && agent.remainingDistance < 0.5f || roamningTimer >= 5f) 
+        if((!agent.pathPending && agent.remainingDistance < 0.5f) || roamningTimer >= 5f) 
         {
             SetNewRoamingVector();
         }
@@ -241,7 +241,7 @@ public class AIMovement : MonoBehaviour
         agent.speed = roamingSpeed;
         roamningTimer += Time.deltaTime;
 
-        if(!agent.pathPending && agent.remainingDistance < 0.5f || roamningTimer >= 5f) 
+        if((!agent.pathPending && agent.remainingDistance < 0.5f) || roamningTimer >= 5f) 
         {
             SetNewRoamingVectorAroundHouse();
         }
