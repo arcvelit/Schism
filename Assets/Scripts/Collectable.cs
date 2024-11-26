@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
-
-    
-
     private bool destroyed;
 
     void OnMouseOver()
@@ -24,6 +21,11 @@ public class Collectible : MonoBehaviour
     public void Collect()
     {
         if (!destroyed) {
+
+            if (gameObject.tag == "Battery") PlayerSounds.Instance.PlayItemTake();
+            if (gameObject.tag == "Manuscript") PlayerSounds.Instance.PlayBookTake();
+
+            UIManager.Instance.RemoveInteraction();
             InventoryManager.Instance.AddToInventory(gameObject.tag); 
             Destroy(gameObject);
             destroyed = true;
