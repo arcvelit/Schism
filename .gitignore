@@ -84,6 +84,12 @@ crashlytics-build.properties
 /[Aa]ssets/[Ff]urniture/*
 /[Aa]ssets/[Tt]errain[Ss]ample[Aa]ssets/*
 
+# IDEA
+.idea/
+
+# DS_STORE
+.DS_Store
+
 .vscode/*
 .vsconfig
 

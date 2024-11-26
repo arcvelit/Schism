@@ -6,7 +6,8 @@ using UnityEngine;
 public class MouseLook : MonoBehaviour
 {
 
-    [SerializeField] float mouseSensitivity; 
+    [SerializeField] float sensitivityX;
+    [SerializeField] float sensitivityY; 
     [SerializeField] Transform player;
 
     float xRotation = 0f;
@@ -20,14 +21,13 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * sensitivityX * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * sensitivityY * Time.deltaTime;
 
+        player.Rotate(Vector3.up * mouseX);
+        
         xRotation -= mouseY;
         xRotation = Math.Clamp(xRotation, -90f, 90f);
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-
-        player.Rotate(Vector3.up * mouseX);
-
     }
 }

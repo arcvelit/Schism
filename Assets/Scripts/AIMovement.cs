@@ -17,6 +17,7 @@ public class AIMovement : MonoBehaviour
     public float seeAngle = 30f;
     public float soundDetectionRange = 15f;
     public float timeInactive = 1f;
+    private float roamningTimer = 0f;
 
     private NavMeshAgent agent;
     private Vector3 roamingVector;
@@ -112,8 +113,9 @@ public class AIMovement : MonoBehaviour
     void RoamAround() {
 
         agent.speed = roamingSpeed;
+        roamningTimer += Time.deltaTime;
 
-        if(!agent.pathPending && agent.remainingDistance < 0.5f) 
+        if(!agent.pathPending && agent.remainingDistance < 0.5f || roamningTimer >= 5f) 
         {
             SetNewRoamingVector();
         }
@@ -175,13 +177,38 @@ public class AIMovement : MonoBehaviour
         // With increasing monster aggressivity or *dificulty, the roaming algorithm should change
         // The more aggressive the monster is, the more likely the monster will get close to the player and the more likely it is for the monster to catch the player
 
+        roamningTimer = 0f;
         Vector3 randomDirection = Random.insideUnitSphere * roamingRange;
         randomDirection += transform.position;
+
+        Vector3 targetPosition = Vector3.Lerp(randomDirection, player.position, currentDifficulty / 16f);
+        Debug.DrawLine(agent.transform.position, targetPosition, Color.green, 5f);
+        Debug.DrawLine(agent.transform.position, player.position, Color.blue, 5f);
+        Debug.DrawLine(agent.transform.position, randomDirection, Color.yellow, 5f);
+
         NavMeshHit hit;
-        if(NavMesh.SamplePosition(randomDirection, out hit, 10f, NavMesh.AllAreas))
+        if(NavMesh.SamplePosition(targetPosition, out hit, 10f, NavMesh.AllAreas))
         {
             roamingVector = hit.position;
-            //Debug.DrawLine(agent.transform.position, roamingVector, Color.green, 10f);
+            agent.SetDestination(roamingVector);
+        }
+    }
+
+    void SetNewRoamingVectorAroundHouse() 
+    {
+        float maxRoamingRange = 20f;
+        roamningTimer = 0f;
+        Vector3 randomDirection;
+
+        randomDirection = Random.insideUnitSphere * maxRoamingRange;
+        randomDirection.y = 0;
+
+        randomDirection += safeSpacePosition;
+
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(randomDirection, out hit, 10f, NavMesh.AllAreas))
+        {
+            roamingVector = hit.position;
             agent.SetDestination(roamingVector);
         }
     }
@@ -200,29 +227,23 @@ public class AIMovement : MonoBehaviour
             }
         }
 
-        if(playerInSafeSpace) shouldRoamAroundHouse = true;
+        if(playerInSafeSpace) 
+        {
+            isChasing = false;
+            shouldRoamAroundHouse = true;
+            SetNewRoamingVectorAroundHouse();
+        }
     }
 
     // NEEDS MORE TESTING
     void RoamAroundHouse()
     {
-        isChasing = false;
-        // When the player enters a safe space, the monster will roam around the house until the player exits the safe space
-        // When the player exits, the monster will continue to chase the player
+        agent.speed = roamingSpeed;
+        roamningTimer += Time.deltaTime;
 
-        float maxRoamingRange = 20f;
-        Vector3 randomDirection;
-
-        randomDirection = Random.insideUnitSphere * maxRoamingRange;
-        randomDirection.y = 0;
-
-        randomDirection += safeSpacePosition;
-
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomDirection, out hit, 10f, NavMesh.AllAreas))
+        if(!agent.pathPending && agent.remainingDistance < 0.5f || roamningTimer >= 5f) 
         {
-            roamingVector = hit.position;
-            agent.SetDestination(roamingVector);
+            SetNewRoamingVectorAroundHouse();
         }
     }
 
@@ -235,10 +256,8 @@ public class AIMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        // Debug.Log("Collision");
         if(collision.gameObject.CompareTag("Player"))
         {
-            // Debug.Log("Collision with player");
             agent.isStopped = true;
 
             // GameOver, temporary just load back the scene
