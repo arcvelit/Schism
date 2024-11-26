@@ -9,6 +9,8 @@ public class Movement : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float jumpHeight;
 
+    public Transform spawnPoint;
+
     float WALKING_SPEED = 6;
     float RUNNING_SPEED = 9;
 
@@ -78,4 +80,11 @@ public class Movement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
+
+    public void BackToSpawn()
+    {
+        gameObject.transform.position = spawnPoint.position;
+    }
+
+
 }
