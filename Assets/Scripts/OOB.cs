@@ -4,11 +4,12 @@ using System.Collections;
 public class OOB : MonoBehaviour
 {
 
+    private static string OOB_MESSAGE = "You wandered away from the village and got lost...";
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("OOB")) 
         {
-            Debug.Log("tamer");
             StartCoroutine(BackToSpawn());
         }
     }
@@ -16,7 +17,7 @@ public class OOB : MonoBehaviour
     IEnumerator BackToSpawn() 
     {
         yield return StartCoroutine(UIManager.Instance.IncreaseAlpha(1f, 1.0f));
-        yield return StartCoroutine(UIManager.Instance.WriteMessage("You got lost and died lmao."));
+        yield return StartCoroutine(UIManager.Instance.WriteMessage(OOB_MESSAGE));
         yield return new WaitForSeconds(1.0f); 
 
         // Teleport

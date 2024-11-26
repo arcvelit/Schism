@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerSounds : MonoBehaviour
@@ -10,6 +11,13 @@ public class PlayerSounds : MonoBehaviour
     public AudioSource takeItem;
     public AudioSource openDoor;
     public AudioSource closeDoor;
+    public AudioSource outOfBreath;
+    public AudioSource typing;
+    public AudioSource outside;
+    public AudioSource inside;
+    public AudioSource torch;
+
+    public AudioSource jumpscare;
 
     // Awake ensures the singleton pattern is enforced
     private void Awake()
@@ -17,7 +25,6 @@ public class PlayerSounds : MonoBehaviour
         if (Instance == null)
         {
             Instance = this; // Set the instance
-            DontDestroyOnLoad(gameObject); // Keep it alive across scenes
         }
         else
         {
@@ -28,7 +35,6 @@ public class PlayerSounds : MonoBehaviour
     public void PlayItemTake()
     {
         takeItem.Play();
-
     }
 
     public void PlayBookTake()
@@ -44,6 +50,43 @@ public class PlayerSounds : MonoBehaviour
     public void PlayCloseDoor() 
     {
         closeDoor.Play();
+    }
+
+    public void PlayOutOfBreath()
+    {
+        outOfBreath.Play();
+    }
+
+    public void PlayTyping()
+    {
+        typing.Play();
+    }
+
+    public void StopTyping()
+    {
+        typing.Stop();
+    }
+
+    public void AmbientToInside()
+    {
+        outside.Stop();
+        inside.Play();
+    }
+
+    public void AmbientToOutside()
+    {
+        inside.Stop();
+        outside.Play();
+    }
+
+    public void PlayJumpscare()
+    {
+        jumpscare.Play();
+    }
+
+    public void PlayTorchClick()
+    {
+        torch.Play();
     }
 
 }
