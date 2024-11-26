@@ -25,6 +25,10 @@ public class HouseDoor : MonoBehaviour
 
     public void Interact()
     {
+        if (opened) PlayerSounds.Instance.PlayCloseDoor();   
+        else PlayerSounds.Instance.PlayOpenDoor(); 
+        
+        UIManager.Instance.RemoveInteraction();
         StartCoroutine(Rotate());
         opened = !opened;
     }
