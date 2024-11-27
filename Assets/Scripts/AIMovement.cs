@@ -220,6 +220,7 @@ public class AIMovement : MonoBehaviour
             if(playerLostTime >= timeInactive)
             {
                 isChasing = false;
+                PlayerSounds.Instance.StopChased();
                 SetNewRoamingVector();
             }
         }
@@ -227,6 +228,7 @@ public class AIMovement : MonoBehaviour
         if(playerInSafeSpace) 
         {
             isChasing = false;
+            PlayerSounds.Instance.StopChased();
             shouldRoamAroundHouse = true;
             SetNewRoamingVectorAroundHouse();
         }
@@ -248,6 +250,7 @@ public class AIMovement : MonoBehaviour
         isChasing = true;
         agent.speed = chaseSpeed;
         playerLostTime = 0f;
+        PlayerSounds.Instance.PlayChased();
     }
 
     void OnTriggerEnter(Collider other)
@@ -267,6 +270,7 @@ public class AIMovement : MonoBehaviour
     {
         StartCoroutine(UIManager.Instance.IncreaseAlpha(1.0f, 0.2f));
 
+        PlayerSounds.Instance.StopChased();
         PlayerSounds.Instance.PlayJumpscare();
 
         while(PlayerSounds.Instance.JumpscarePlaying())
