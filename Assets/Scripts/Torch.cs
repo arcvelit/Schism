@@ -24,11 +24,13 @@ public class Torch : MonoBehaviour
         {
             if (torchLitty) // Toggle off
             {
+                PlayerSounds.Instance.PlayTorchClick();
                 torchLitty = false;
                 torch.enabled = torchLitty;
             }
             else if (hasBatteryLeft) // Toggle on condition of battery left
             {
+                PlayerSounds.Instance.PlayTorchClick();
                 torchLitty = true;
                 torch.enabled = torchLitty;
             }
