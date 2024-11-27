@@ -13,9 +13,11 @@ public class UIManager : MonoBehaviour
     public static bool messaging;
     public static bool lookingatitem;
     public static bool lookingathousedoor;
+    public static bool lookingataltar;
 
     public static Collectible lookatObject;
     public static HouseDoor lookatHouseDoor;
+    public static Altar lookatAltar;
 
     public GameObject player;
 
@@ -82,6 +84,12 @@ public class UIManager : MonoBehaviour
         lookingathousedoor = true;
     }
 
+    public void ShowAltarInteraction(int id)
+    {
+        interactionlabel.text = $"(E) Place manuscript {id}";
+        lookingataltar = true;
+    }
+
     public void SetLookatHouseDoor(HouseDoor door) 
     {
         lookatHouseDoor = door;
@@ -90,6 +98,11 @@ public class UIManager : MonoBehaviour
     public void SetLookatCollectible(Collectible collectible) 
     {
         lookatObject = collectible;
+    }
+
+    public void SetLookatAltar(Altar altar)
+    {
+        lookatAltar = altar;
     }
 
     void Update() 
@@ -102,6 +115,11 @@ public class UIManager : MonoBehaviour
         if (lookingathousedoor && Input.GetKeyDown(KeyCode.E)) 
         {
             lookatHouseDoor.Interact();
+        }
+
+        if (lookingataltar && Input.GetKeyDown(KeyCode.E)) 
+        {
+            lookatAltar.Interact();
         }
     }
 
@@ -135,6 +153,7 @@ public class UIManager : MonoBehaviour
         // Remove interact with (e)
         lookingatitem = false;
         lookingathousedoor = false;
+        lookingataltar = false;
         interactionlabel.text = "";
     }
 

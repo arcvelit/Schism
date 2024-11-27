@@ -17,6 +17,7 @@ public class PlayerSounds : MonoBehaviour
     public AudioSource inside;
     public AudioSource torch;
     public AudioSource bookClose;
+    public AudioSource monument;
 
     public AudioSource jumpscare;
 
@@ -93,6 +94,11 @@ public class PlayerSounds : MonoBehaviour
     public void PlayBookClose()
     {
         bookClose.Play();
+    }
+
+    public void PlayMonumentCollect()
+    {
+        monument.Play();
     }
 
 }

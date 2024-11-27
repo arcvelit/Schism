@@ -4,6 +4,8 @@ public class Collectible : MonoBehaviour
 {
     private bool destroyed;
 
+    public int id;
+
     void OnMouseOver()
     {
         Vector3 diff = gameObject.transform.position - PlayerGlobal.Instance.GetTransform().position;
@@ -28,7 +30,11 @@ public class Collectible : MonoBehaviour
         if (!destroyed) {
 
             if (gameObject.tag == "Battery") PlayerSounds.Instance.PlayItemTake();
-            if (gameObject.tag == "Manuscript") PlayerSounds.Instance.PlayBookTake();
+            if (gameObject.tag == "Manuscript") {
+                PlayerSounds.Instance.PlayBookTake();
+                ProgressGlobal.Instance.CollectBookId(id);
+                Debug.Log("Collected book " + id);
+            }
 
             UIManager.Instance.RemoveInteraction();
             InventoryManager.Instance.AddToInventory(gameObject.tag); 
