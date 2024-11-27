@@ -6,7 +6,12 @@ public class Collectible : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (!destroyed) {
+        Vector3 diff = gameObject.transform.position - PlayerGlobal.Instance.GetTransform().position;
+        if (diff.magnitude > 2.5f) 
+        {
+            OnMouseExit();
+        }            
+        else if (!destroyed) {
             UIManager.Instance.SetLookatCollectible(this);
             UIManager.Instance.ShowCollectibleInteraction();
         }
