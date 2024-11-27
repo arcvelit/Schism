@@ -31,11 +31,13 @@ public class SafeSpace : MonoBehaviour
     {
         Vector3 center = GetComponent<BoxCollider>().bounds.center;
         MonsterGlobal.Instance.PlayerInSafeSpace(center);
+        PlayerSounds.Instance.AmbientToInside();
     }
 
     void RemoveSafeSpace()
     {
         MonsterGlobal.Instance.PlayerExitSafeSpace();
+        PlayerSounds.Instance.AmbientToOutside();
     }
 
 }
