@@ -17,8 +17,8 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   focusDistance:
-    overrideState: 0
-    value: 5
+    overrideState: 1
+    value: 15
   aperture:
     overrideState: 0
     value: 12.7
@@ -26,40 +26,6 @@ MonoBehaviour:
     overrideState: 0
     value: 50
   kernelSize:
-    overrideState: 0
-    value: 1
---- !u!114 &-7491998453426544111
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b77c5407dc277943b591ade9e6b18c5, type: 3}
-  m_Name: LensDistortion
-  m_EditorClassIdentifier: 
-  active: 1
-  enabled:
-    overrideState: 1
-    value: 1
-  intensity:
-    overrideState: 1
-    value: 20
-  intensityX:
-    overrideState: 0
-    value: 1
-  intensityY:
-    overrideState: 0
-    value: 1
-  centerX:
-    overrideState: 0
-    value: 0
-  centerY:
-    overrideState: 0
-    value: 0
-  scale:
     overrideState: 0
     value: 1
 --- !u!114 &-1173769279120402764
@@ -106,34 +72,6 @@ MonoBehaviour:
   opacity:
     overrideState: 0
     value: 1
---- !u!114 &-764691972192951745
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d65e486e4de6e5448a8fbb43dc8756a0, type: 3}
-  m_Name: Grain
-  m_EditorClassIdentifier: 
-  active: 1
-  enabled:
-    overrideState: 1
-    value: 1
-  colored:
-    overrideState: 0
-    value: 1
-  intensity:
-    overrideState: 1
-    value: 0.2
-  size:
-    overrideState: 0
-    value: 1
-  lumContrib:
-    overrideState: 0
-    value: 0.8
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,8 +90,6 @@ MonoBehaviour:
   - {fileID: -7907660465723707504}
   - {fileID: -1173769279120402764}
   - {fileID: 3246737046938202419}
-  - {fileID: -764691972192951745}
-  - {fileID: -7491998453426544111}
 --- !u!114 &3246737046938202419
 MonoBehaviour:
   m_ObjectHideFlags: 3
