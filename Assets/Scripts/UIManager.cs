@@ -19,7 +19,9 @@ public class UIManager : MonoBehaviour
     public static HouseDoor lookatHouseDoor;
     public static Altar lookatAltar;
 
-    public GameObject player;
+    public UIDocument scrolls;
+    public Button exitButton;
+    public Label scrollText;
 
     public UIDocument messages;
     private Label gameMessages;
@@ -38,6 +40,8 @@ public class UIManager : MonoBehaviour
     public Texture2D battery2;
     public Texture2D battery3;
 
+    public static bool inScrollView;
+
     void Start()
     {
 
@@ -52,6 +56,13 @@ public class UIManager : MonoBehaviour
         Color newColor = new Color(0f, 0f, 0f, 0.0f);
         gameMessageContainer.style.backgroundColor = new StyleColor(newColor);
 
+        scrolls.rootVisualElement.style.display = DisplayStyle.None;
+        scrollText = scrolls.rootVisualElement.Q("ScrollText") as Label;
+        exitButton = scrolls.rootVisualElement.Q("Exit") as Button;
+        exitButton.RegisterCallback<ClickEvent>(evt =>
+        {
+            PerformScrollViewExit(); 
+        });
 
         interactionlabel = doc.rootVisualElement.Q("InteractLabel") as Label;
         crosshair = doc.rootVisualElement.Q("CrosshairText") as Label;
@@ -239,6 +250,36 @@ public IEnumerator WriteMessage(string message)
         }
 
         PlayerSounds.Instance.StopTyping();
+    }
+
+    public void PerformScrollViewExit()
+    {
+        Time.timeScale = 1;
+        inScrollView = false;
+
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+
+        doc.rootVisualElement.style.display = DisplayStyle.Flex;
+        scrolls.rootVisualElement.style.display = DisplayStyle.None;
+
+        scrollText.text = "";
+
+        PlayerSounds.Instance.PlayBookClose();
+
+    }
+
+    public void PerformScrollViewEnter(int id)
+    {
+        Time.timeScale = 0;
+        inScrollView = true;
+
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+
+        doc.rootVisualElement.style.display = DisplayStyle.None;
+        scrolls.rootVisualElement.style.display = DisplayStyle.Flex;        
+
+        scrollText.text = ProgressGlobal.Instance.GetScrollContent(id);
+
     }
 
     

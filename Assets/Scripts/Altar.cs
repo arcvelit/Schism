@@ -9,8 +9,6 @@ public class Altar : MonoBehaviour
 
     public GameObject man;
 
-    private static string NOT_IN_INVENTORY_MESSAGE = "...";
-
     void Start()
     {
 
