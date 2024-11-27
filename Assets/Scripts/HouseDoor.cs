@@ -13,8 +13,16 @@ public class HouseDoor : MonoBehaviour
 
     void OnMouseOver()
     {
-        UIManager.Instance.SetLookatHouseDoor(this);
-        UIManager.Instance.ShowHouseDoorInteraction();
+        Vector3 diff = gameObject.transform.position - PlayerGlobal.Instance.GetTransform().position;
+        if (diff.magnitude > 3f || isRotating) 
+        {
+            OnMouseExit();
+        }
+        else 
+        {
+            UIManager.Instance.SetLookatHouseDoor(this);
+            UIManager.Instance.ShowHouseDoorInteraction();
+        }
     }
 
     void OnMouseExit()
@@ -24,6 +32,8 @@ public class HouseDoor : MonoBehaviour
 
     public void Interact()
     {
+        if (isRotating) return;
+
         if (opened) PlayerSounds.Instance.PlayCloseDoor();   
         else PlayerSounds.Instance.PlayOpenDoor(); 
 
