@@ -16,6 +16,7 @@ public class PlayerSounds : MonoBehaviour
     public AudioSource outside;
     public AudioSource inside;
     public AudioSource torch;
+    public AudioSource bookClose;
 
     public AudioSource jumpscare;
 
@@ -87,6 +88,11 @@ public class PlayerSounds : MonoBehaviour
     public void PlayTorchClick()
     {
         torch.Play();
+    }
+
+    public void PlayBookClose()
+    {
+        bookClose.Play();
     }
 
 }
