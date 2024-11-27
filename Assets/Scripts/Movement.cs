@@ -15,18 +15,18 @@ public class Movement : MonoBehaviour
     float RUNNING_SPEED = 9;
 
     [SerializeField] CharacterController controller;
-    [SerializeField] Transform groundCheck;
-    public float groundDistance = 0.2f;
-    public LayerMask groundMask;
 
     Vector3 velocity;
     float gravity = 2 * -9.81f;
-    bool isGrounded;
+    [SerializeField] bool isGrounded;
 
     [HideInInspector] public bool isRunning;
+    private bool canSprint = true;
     public float MAX_STAMINA = 5;
     public float stamina = 0;
     public int staminaPercent => (int)(100 * stamina/MAX_STAMINA);
+
+    private Vector3 lastPosition;
 
     void Start()
     {
@@ -39,37 +39,47 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        RaycastHit hit;
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, controller.height / 2 + 0.3f);
+        bool hitCeiling = Physics.Raycast(transform.position, Vector3.up, out hit, controller.height / 2 + 0.1f);
+
+        if (hitCeiling && velocity.y > 0)
+        {
+            velocity.y = -2f;
+        }
 
         if(isGrounded && velocity.y < 0) 
         {
             velocity.y = -2f;
         }
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-
         if(Input.GetButtonDown("Jump") && isGrounded) 
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
+        
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+        Vector3 movementDelta = transform.position - lastPosition;
+        lastPosition = transform.position;
+        isRunning = Input.GetKey(KeyCode.LeftShift) && z != 0 && canSprint && movementDelta.magnitude > 0.01f;
+        Debug.Log(movementDelta.magnitude);
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if(isRunning)
         {
-            isRunning = true;
-            speed = RUNNING_SPEED;
-            stamina -= Time.deltaTime;
+            stamina = Mathf.Clamp(stamina - Time.deltaTime, 0, MAX_STAMINA);
+            if(stamina <= 0) canSprint = false;
             // UIManager.Instance.UpdateStaminaBar(staminaPercent);
         }
-        else 
+
+        if(!isRunning)
         {
-            isRunning = false;
-            speed = WALKING_SPEED;
-            stamina = stamina < 0 ? 0 : (stamina > MAX_STAMINA ? MAX_STAMINA : stamina + Time.deltaTime);
+            stamina = Mathf.Clamp(stamina + Time.deltaTime, 0, MAX_STAMINA);
+            if(!canSprint && stamina >= 2) canSprint = true;
             // UIManager.Instance.UpdateStaminaBar(staminaPercent);
         }
 
+        speed = isRunning ? RUNNING_SPEED : WALKING_SPEED;
         Vector3 move = transform.right * x + transform.forward * z;
         if (move.magnitude > 1)
         {
@@ -79,6 +89,7 @@ public class Movement : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
     }
 
     public void BackToSpawn()
