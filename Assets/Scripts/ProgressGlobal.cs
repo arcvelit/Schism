@@ -6,7 +6,20 @@ public class ProgressGlobal : MonoBehaviour
 {
     public static ProgressGlobal Instance { get; private set; }
 
-    public HashSet<int> booksCollected;
+    private static string ERROR_SCROLL = "";
+    private static HashSet<int> booksCollected = new HashSet<int>();
+    private static Dictionary<int, string> scrolls = new Dictionary<int, string> { 
+        { 1,  "." }, 
+        { 2,  "." }, 
+        { 3,  "." }, 
+        { 4,  "." }, 
+        { 5,  "." }, 
+        { 6,  "." }, 
+        { 7,  "." }, 
+        { 8,  "." }, 
+        { 9,  "." }, 
+        { 10, "." }
+    };
 
     // Awake ensures the singleton pattern is enforced
     private void Awake()
@@ -14,7 +27,6 @@ public class ProgressGlobal : MonoBehaviour
         if (Instance == null)
         {
             Instance = this; // Set the instance
-            booksCollected = new HashSet<int>();
         }
         else
         {
@@ -25,5 +37,9 @@ public class ProgressGlobal : MonoBehaviour
 
     public void CollectBookId(int id) => booksCollected.Add(id);
     public bool FoundManuscriptId(int id) => booksCollected.Contains(id);
+    public string GetScrollContent(int id)
+    {
+        return scrolls.ContainsKey(id) ? scrolls[id] : ERROR_SCROLL;
+    }
 
 }

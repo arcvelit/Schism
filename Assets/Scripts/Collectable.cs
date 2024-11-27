@@ -33,6 +33,7 @@ public class Collectible : MonoBehaviour
             if (gameObject.tag == "Manuscript") {
                 PlayerSounds.Instance.PlayBookTake();
                 ProgressGlobal.Instance.CollectBookId(id);
+                UIManager.Instance.PerformScrollViewEnter(id);
                 Debug.Log("Collected book " + id);
             }
 
