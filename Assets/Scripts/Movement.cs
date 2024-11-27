@@ -41,6 +41,12 @@ public class Movement : MonoBehaviour
     {
         RaycastHit hit;
         isGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, controller.height / 2 + 0.3f);
+        bool hitCeiling = Physics.Raycast(transform.position, Vector3.up, out hit, controller.height / 2 + 0.1f);
+
+        if (hitCeiling && velocity.y > 0)
+        {
+            velocity.y = -2f;
+        }
 
         if(isGrounded && velocity.y < 0) 
         {
