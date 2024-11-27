@@ -11,11 +11,11 @@
         <ui:VisualElement name="ManuscriptCounterImage" enabled="true" class="icon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Art/old-scroll.png?fileID=2800000&amp;guid=57abb4e5d80184d6a99c0ee68c7139ed&amp;type=3#old-scroll&quot;); left: auto; top: 1%; width: 6%; rotate: 0; height: 10%; position: absolute; justify-content: flex-start; right: 4%; display: none;">
             <ui:Label tabindex="-1" text="00" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ManuscriptCounter" style="align-items: stretch; justify-content: flex-start; left: 90%; height: 50%; font-size: 50%;" />
         </ui:VisualElement>
-        <ui:VisualElement name="Crosshair" style="flex-grow: 1; width: 5%; height: 5%; position: absolute; left: 47.5%; top: 47.5%; align-items: center; justify-content: center;">
-            <ui:Label tabindex="-1" text="." parse-escape-sequences="true" display-tooltip-when-elided="true" name="CrosshairText" style="font-size: 40px; justify-content: flex-start; align-items: center; -unity-text-align: lower-left; -unity-font-style: normal; color: rgb(255, 255, 255);" />
+        <ui:VisualElement name="Crosshair" style="flex-grow: 1; width: 100%; height: 5%; position: absolute; left: 0; top: 47.5%; align-items: center; justify-content: center; -unity-font-style: normal;">
+            <ui:Label tabindex="-1" text="." parse-escape-sequences="true" display-tooltip-when-elided="true" name="CrosshairText" style="font-size: 30px; justify-content: flex-start; align-items: center; -unity-text-align: lower-center; -unity-font-style: normal; color: rgb(255, 255, 255); width: 100%; height: 100%;" />
         </ui:VisualElement>
         <ui:VisualElement name="InteractBox" style="flex-grow: 1; width: 100%; height: 5%; position: absolute; left: 0; top: 53%; align-items: center; justify-content: center;">
-            <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="InteractLabel" style="font-size: 30px; justify-content: flex-start; align-items: center; -unity-text-align: lower-left; -unity-font-style: normal; color: rgb(255, 255, 255);" />
+            <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="InteractLabel" text="Missing Manuscript" style="font-size: 20px; justify-content: flex-start; align-items: center; -unity-text-align: lower-left; -unity-font-style: normal; color: rgb(255, 255, 255);" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
