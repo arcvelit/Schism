@@ -2839,7 +2839,7 @@ MonoBehaviour:
   player: {fileID: 0}
   roamingSpeed: 3.5
   roamingRange: 20
-  chaseSpeed: 5
+  chaseSpeed: 6.5
   detectionRange: 10
   runningHearRange: 15
   seeRange: 15

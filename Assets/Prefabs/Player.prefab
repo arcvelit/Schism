@@ -1546,6 +1546,8 @@ MonoBehaviour:
   speed: 6
   jumpHeight: 1
   spawnPoint: {fileID: 0}
+  WALKING_SPEED: 6
+  RUNNING_SPEED: 9
   controller: {fileID: 2877485637085551872}
   isGrounded: 0
   isRunning: 0
@@ -1563,10 +1565,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 504002202c729104fadbf7b75cf68891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LIGHT_CAP_SEC: 10
+  LIGHT_CAP_SEC: 30
   lightTime: 0
-  PUZZLE_OBJECTIVE: 10
-  BATTERY_CAP: 5
   batteries: 0
   manuscripts: 0
 --- !u!114 &-6912609622671649695
