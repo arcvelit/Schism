@@ -18,6 +18,7 @@ public class PlayerSounds : MonoBehaviour
     public AudioSource torch;
     public AudioSource bookClose;
     public AudioSource monument;
+    public AudioSource chased;
 
     public AudioSource jumpscare;
 
@@ -107,6 +108,16 @@ public class PlayerSounds : MonoBehaviour
     public void PlayMonumentCollect()
     {
         monument.Play();
+    }
+
+    public void PlayChased()
+    {
+        chased.Play();
+    }
+
+    public void StopChased()
+    {
+        chased.Stop();
     }
 
 }
