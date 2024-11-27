@@ -154,15 +154,17 @@ public void ResetMessage()
     gameMessages.text = "";
 }
 
-public IEnumerator GameMessage(string message) 
+public IEnumerator GameMessage(string message, float alpha, Movement player) 
 {
     if (messaging) yield break;
 
     messaging = true;
-    
-    yield return StartCoroutine(IncreaseAlpha(0.7f, 1.0f));
+
+    yield return StartCoroutine(IncreaseAlpha(alpha, 1.0f));
     yield return StartCoroutine(WriteMessage(message));
     yield return new WaitForSeconds(1.0f);
+
+    if (player != null) player.BackToSpawn();
 
     ResetMessage();
 
@@ -198,6 +200,7 @@ public IEnumerator IncreaseAlpha(float targetAlpha, float duration)
 
 public IEnumerator WriteMessage(string message)
     {
+        PlayerSounds.Instance.PlayTyping();
         gameMessages.text = "";
         int messageLength = message.Length;
 
@@ -207,6 +210,8 @@ public IEnumerator WriteMessage(string message)
 
             yield return new WaitForSeconds(0.1f);
         }
+
+        PlayerSounds.Instance.StopTyping();
     }
 
     

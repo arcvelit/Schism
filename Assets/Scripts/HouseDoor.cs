@@ -9,11 +9,10 @@ public class HouseDoor : MonoBehaviour
     private static float openedRot = 80;
     private bool isRotating = false;
 
-    public float duration = 1.0f;
+    private float duration = 0.5f;
 
     void OnMouseOver()
     {
-        Debug.Log("This is a door");
         UIManager.Instance.SetLookatHouseDoor(this);
         UIManager.Instance.ShowHouseDoorInteraction();
     }
@@ -25,6 +24,10 @@ public class HouseDoor : MonoBehaviour
 
     public void Interact()
     {
+        if (opened) PlayerSounds.Instance.PlayCloseDoor();   
+        else PlayerSounds.Instance.PlayOpenDoor(); 
+
+        UIManager.Instance.RemoveInteraction();
         StartCoroutine(Rotate());
         opened = !opened;
     }

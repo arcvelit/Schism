@@ -115,7 +115,7 @@ public class AIMovement : MonoBehaviour
         agent.speed = roamingSpeed;
         roamningTimer += Time.deltaTime;
 
-        if(!agent.pathPending && agent.remainingDistance < 0.5f || roamningTimer >= 5f) 
+        if((!agent.pathPending && agent.remainingDistance < 0.5f) || roamningTimer >= 5f) 
         {
             SetNewRoamingVector();
         }
@@ -241,7 +241,7 @@ public class AIMovement : MonoBehaviour
         agent.speed = roamingSpeed;
         roamningTimer += Time.deltaTime;
 
-        if(!agent.pathPending && agent.remainingDistance < 0.5f || roamningTimer >= 5f) 
+        if((!agent.pathPending && agent.remainingDistance < 0.5f) || roamningTimer >= 5f) 
         {
             SetNewRoamingVectorAroundHouse();
         }
@@ -254,9 +254,9 @@ public class AIMovement : MonoBehaviour
         playerLostTime = 0f;
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collider)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if(collider.gameObject.CompareTag("Player"))
         {
             agent.isStopped = true;
 
