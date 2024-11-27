@@ -9,10 +9,12 @@ public class InventoryManager : MonoBehaviour
 
     public int lightPercentage => (int)(100 * (lightTime/LIGHT_CAP_SEC)); 
 
-    public int PUZZLE_OBJECTIVE = 10;
-    public int BATTERY_CAP = 5;
+    public static int PUZZLE_OBJECTIVE = 10;
+    public static int BATTERY_CAP = 99;
     public int batteries = 0;
     public int manuscripts = 0;
+
+    public bool ACHIEVED_OBJECTIVE => manuscripts == PUZZLE_OBJECTIVE;
 
     void Start()
     {

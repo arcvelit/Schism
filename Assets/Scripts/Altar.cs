@@ -45,6 +45,8 @@ public class Altar : MonoBehaviour
         PlayerSounds.Instance.PlayMonumentCollect();
 
         filled = true;
+        ProgressGlobal.Instance.CheckProgress();
+        
         Debug.Log("Placing at altar " + id);
     }
 }

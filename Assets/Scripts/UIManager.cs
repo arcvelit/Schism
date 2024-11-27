@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour
 
         scrolls.rootVisualElement.style.display = DisplayStyle.None;
         scrollText = scrolls.rootVisualElement.Q("ScrollText") as Label;
-        exitButton = scrolls.rootVisualElement.Q("Exit") as Button;
+        exitButton = scrolls.rootVisualElement.Q("ExitButton") as Button;
         exitButton.RegisterCallback<ClickEvent>(evt =>
         {
             PerformScrollViewExit(); 
@@ -280,6 +280,12 @@ public IEnumerator WriteMessage(string message)
 
         scrollText.text = ProgressGlobal.Instance.GetScrollContent(id);
 
+    }
+
+    public void Blackout()
+    {
+        StartCoroutine(IncreaseAlpha(1.0f, 0.2f));
+        doc.rootVisualElement.style.display = DisplayStyle.None;
     }
 
     
