@@ -254,9 +254,9 @@ public class AIMovement : MonoBehaviour
         playerLostTime = 0f;
     }
 
-    void OnTriggerEnter(Collider collider)
+    void OnCollisionEnter(Collision other)
     {
-        if(collider.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Player"))
         {
             agent.isStopped = true;
 

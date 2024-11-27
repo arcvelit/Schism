@@ -1,13 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
 
-    [SerializeField] float sensitivityX;
-    [SerializeField] float sensitivityY; 
+    [SerializeField] float sensitivity = 0.5f;
     [SerializeField] Transform player;
 
     float xRotation = 0f;
@@ -21,13 +17,13 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * sensitivityX * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * sensitivityY * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * sensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
 
-        player.Rotate(Vector3.up * mouseX);
         
         xRotation -= mouseY;
-        xRotation = Math.Clamp(xRotation, -90f, 90f);
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        player.Rotate(Vector3.up * mouseX);
     }
 }
