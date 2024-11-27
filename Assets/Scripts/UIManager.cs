@@ -86,7 +86,15 @@ public class UIManager : MonoBehaviour
 
     public void ShowAltarInteraction(int id)
     {
-        interactionlabel.text = $"(E) Place manuscript {id}";
+        if (ProgressGlobal.Instance.FoundManuscriptId(id))
+        {
+            interactionlabel.text = $"(E) Place manuscript";
+        }
+        else 
+        {
+            interactionlabel.text = $"Missing manuscript {id}";
+        }
+
         lookingataltar = true;
     }
 
