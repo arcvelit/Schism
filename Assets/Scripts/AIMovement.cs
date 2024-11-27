@@ -268,19 +268,16 @@ public class AIMovement : MonoBehaviour
 
     IEnumerator GameOver()
     {
-        StartCoroutine(UIManager.Instance.IncreaseAlpha(1.0f, 0.2f));
-
         PlayerSounds.Instance.StopChased();
         PlayerSounds.Instance.PlayJumpscare();
+        UIManager.Instance.Blackout();
 
         while(PlayerSounds.Instance.JumpscarePlaying())
         {
             yield return null;
         }
 
-        
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("MainMenu");
     }
 
 

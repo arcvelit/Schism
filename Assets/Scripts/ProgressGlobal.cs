@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 
 public class ProgressGlobal : MonoBehaviour
@@ -7,6 +9,7 @@ public class ProgressGlobal : MonoBehaviour
     public static ProgressGlobal Instance { get; private set; }
 
     private static string ERROR_SCROLL = "";
+    private static int deposited;
     private static HashSet<int> booksCollected = new HashSet<int>();
     private static Dictionary<int, string> scrolls = new Dictionary<int, string> { 
         { 1,  "." }, 
@@ -40,6 +43,24 @@ public class ProgressGlobal : MonoBehaviour
     public string GetScrollContent(int id)
     {
         return scrolls.ContainsKey(id) ? scrolls[id] : ERROR_SCROLL;
+    }
+
+    public void CheckProgress()
+    {
+        deposited++;
+        if (deposited == InventoryManager.PUZZLE_OBJECTIVE)
+        {
+            StartCoroutine(RunEndgame());
+        }
+    }
+
+    public IEnumerator RunEndgame()
+    {
+        UIManager.Instance.Blackout();
+
+        yield return new WaitForSeconds(2f);
+
+        SceneManager.LoadScene("SuccessPanel");
     }
 
 }

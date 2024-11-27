@@ -11,8 +11,8 @@ public class Movement : MonoBehaviour
 
     public Transform spawnPoint;
 
-    float WALKING_SPEED = 6;
-    float RUNNING_SPEED = 9;
+    public float WALKING_SPEED = 6;
+    public float RUNNING_SPEED = 9;
 
     [SerializeField] CharacterController controller;
 
