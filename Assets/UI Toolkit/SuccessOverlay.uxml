@@ -1,0 +1,11 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/ScrollOverlay.uss?fileID=7433441132597879392&amp;guid=83149f549191f4d4e9680aea85ff0538&amp;type=3#ScrollOverlay" />
+    <engine:VisualElement name="Container" style="flex-grow: 1; align-items: center; border-top-width: 20px; border-right-width: 20px; border-bottom-width: 20px; border-left-width: 20px; background-color: rgb(0, 0, 0); background-image: url(&quot;project://database/Assets/Art/SchismBackground.jpg?fileID=2800000&amp;guid=2b34f1403256e44b6af8664f26032067&amp;type=3#SchismBackground&quot;); -unity-background-image-tint-color: rgb(70, 69, 69);">
+        <engine:VisualElement name="ScrollContainer" style="flex-grow: 1; flex-wrap: wrap; width: 40%; background-image: url(&quot;project://database/Assets/Art/old_paper_stock_02_by_ftourini_d48ubt0-pre.png?fileID=2800000&amp;guid=7d34787677765d543918c4f17d1229f0&amp;type=3#old_paper_stock_02_by_ftourini_d48ubt0-pre&quot;); border-top-width: 20px; border-right-width: 20px; border-bottom-width: 10px; border-left-width: 30px; background-size: 110% 110%; -unity-background-image-tint-color: rgb(171, 171, 171); display: flex;">
+            <engine:Label text="*Insert success story here*" name="SuccessText" double-click-selects-word="false" style="-unity-text-align: upper-left; white-space: pre-wrap; -unity-font-style: bold-and-italic; font-size: 20px;" />
+        </engine:VisualElement>
+        <engine:VisualElement name="ButtonContainer" style="flex-grow: 1; position: absolute; right: 0; bottom: 0; width: 10%;">
+            <engine:Button text="Main Menu" name="MenuButton" class="button" style="-unity-font-style: bold; -unity-background-image-tint-color: rgb(169, 176, 180); font-size: 30px; -unity-font-definition: url(&quot;project://database/Assets/Art/youmurdererbb_reg.ttf?fileID=12800000&amp;guid=5bea0333535cc4d7791dce07e42f2dfb&amp;type=3#youmurdererbb_reg&quot;);" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

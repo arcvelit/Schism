@@ -12,7 +12,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Map.unity
     guid: f7c90f04353cea349a2a2c3a2a76266c
   - enabled: 1
-    path: Assets/Scenes/Demo.unity
-    guid: b10e0ae9e21d09c4e86d0dae30bd9b7c
+    path: Assets/Scenes/PreambleOverlay.unity
+    guid: 4cfe878cffb745740b00db70aace31d9
+  - enabled: 1
+    path: Assets/Scenes/ControlScene.unity
+    guid: fd58fe5891dfab84fb190f4bf6a87371
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
