@@ -254,7 +254,7 @@ public class AIMovement : MonoBehaviour
         playerLostTime = 0f;
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Player"))
         {

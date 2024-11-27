@@ -2796,6 +2796,8 @@ GameObject:
   - component: {fileID: 7881785570547366119}
   - component: {fileID: 7329384678702947123}
   - component: {fileID: 3789536706658428091}
+  - component: {fileID: 4680656372656902717}
+  - component: {fileID: 149663505557313957}
   m_Layer: 8
   m_Name: Dajjal
   m_TagString: Untagged
@@ -2938,6 +2940,39 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4680656372656902717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7823035261699283482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f7433b92499814fba7e3fa2372a202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &149663505557313957
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7823035261699283482}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &7871818157998249747
 GameObject:
   m_ObjectHideFlags: 0
