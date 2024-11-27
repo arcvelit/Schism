@@ -277,7 +277,7 @@ public class AIMovement : MonoBehaviour
             yield return null;
         }
 
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("MainMenu");
     }
 
 
