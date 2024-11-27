@@ -258,8 +258,26 @@ public class AIMovement : MonoBehaviour
 
             // GameOver, temporary just load back the scene
             // TODO: proper game over
-            // SomeClass.GameOver();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+            StartCoroutine(GameOver());
         }
     }
+
+    IEnumerator GameOver()
+    {
+        StartCoroutine(UIManager.Instance.IncreaseAlpha(1.0f, 0.2f));
+
+        PlayerSounds.Instance.PlayJumpscare();
+
+        while(PlayerSounds.Instance.JumpscarePlaying())
+        {
+            yield return null;
+        }
+
+        
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+
 }

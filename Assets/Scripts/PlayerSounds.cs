@@ -21,6 +21,8 @@ public class PlayerSounds : MonoBehaviour
 
     public AudioSource jumpscare;
 
+    private bool playerinside;
+
     // Awake ensures the singleton pattern is enforced
     private void Awake()
     {
@@ -71,13 +73,17 @@ public class PlayerSounds : MonoBehaviour
 
     public void AmbientToInside()
     {
-        outside.Stop();
+        if (playerinside) return;
+        playerinside = true;
+        outside.Pause();
         inside.Play();
     }
 
     public void AmbientToOutside()
     {
-        inside.Stop();
+        if (!playerinside) return;
+        playerinside = false;
+        inside.Pause();
         outside.Play();
     }
 
@@ -85,6 +91,8 @@ public class PlayerSounds : MonoBehaviour
     {
         jumpscare.Play();
     }
+
+    public bool JumpscarePlaying() => jumpscare.isPlaying;
 
     public void PlayTorchClick()
     {
