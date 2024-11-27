@@ -68,15 +68,19 @@ public class Movement : MonoBehaviour
         if(isRunning)
         {
             stamina = Mathf.Clamp(stamina - Time.deltaTime, 0, MAX_STAMINA);
-            if(stamina <= 0) canSprint = false;
-            // UIManager.Instance.UpdateStaminaBar(staminaPercent);
+            if(stamina <= 0)
+            {
+                canSprint = false;
+                PlayerSounds.Instance.PlayOutOfBreath();   
+            }
+            UIManager.Instance.UpdateStaminaBar(staminaPercent);
         }
 
         if(!isRunning)
         {
             stamina = Mathf.Clamp(stamina + Time.deltaTime, 0, MAX_STAMINA);
             if(!canSprint && stamina >= 2) canSprint = true;
-            // UIManager.Instance.UpdateStaminaBar(staminaPercent);
+            UIManager.Instance.UpdateStaminaBar(staminaPercent);
         }
 
         speed = isRunning ? RUNNING_SPEED : WALKING_SPEED;
