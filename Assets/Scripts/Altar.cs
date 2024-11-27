@@ -37,8 +37,7 @@ public class Altar : MonoBehaviour
 
     public void Interact()
     {
-        if (!ProgressGlobal.Instance.TryDepositBookId(id)) {
-            StartCoroutine(UIManager.Instance.GameMessage(NOT_IN_INVENTORY_MESSAGE, 0.7f, null));
+        if (!ProgressGlobal.Instance.FoundManuscriptId(id)) {
             return;
         }
 
