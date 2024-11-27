@@ -63,7 +63,7 @@ public class Movement : MonoBehaviour
         Vector3 movementDelta = transform.position - lastPosition;
         lastPosition = transform.position;
         isRunning = Input.GetKey(KeyCode.LeftShift) && z != 0 && canSprint && movementDelta.magnitude > 0.01f;
-        Debug.Log(movementDelta.magnitude);
+        // Debug.Log(movementDelta.magnitude);
 
         if(isRunning)
         {
