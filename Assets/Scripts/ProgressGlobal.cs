@@ -24,6 +24,6 @@ public class ProgressGlobal : MonoBehaviour
 
 
     public void CollectBookId(int id) => booksCollected.Add(id);
-    public bool TryDepositBookId(int id) => booksCollected.Remove(id);
+    public bool FoundManuscriptId(int id) => booksCollected.Contains(id);
 
 }
