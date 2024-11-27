@@ -3,7 +3,7 @@
     <ui:VisualElement name="Container" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Art/SchismBackground.jpg?fileID=2800000&amp;guid=2b34f1403256e44b6af8664f26032067&amp;type=3#SchismBackground&quot;); -unity-background-image-tint-color: rgb(161, 153, 153); -unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/Art/youmurdererbb_reg.ttf?fileID=12800000&amp;guid=5bea0333535cc4d7791dce07e42f2dfb&amp;type=3#youmurdererbb_reg&quot;); font-size: 25px;">
         <ui:Label tabindex="-1" text="Schism" parse-escape-sequences="true" display-tooltip-when-elided="true" class="header" />
         <ui:Button text="Start" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StartButton" class="button" style="margin-top: 125px;" />
-        <ui:Button text="Settings" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SettingsButton" class="button" />
+        <ui:Button text="Controls" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SettingsButton" class="button" />
         <ui:Button text="Exit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ExitButton" class="button" />
     </ui:VisualElement>
 </ui:UXML>
