@@ -53,7 +53,6 @@ public class AIMovement : MonoBehaviour
         }
         else if(shouldRoamAroundHouse) 
         {
-            // NEEDS MORE TESTING
             Debug.Log("Player enterd safe space");
             RoamAroundHouse();
             if(!playerInSafeSpace) 
@@ -171,8 +170,6 @@ public class AIMovement : MonoBehaviour
 
     void SetNewRoamingVector() 
     {
-        //TODO
-
         // The monster will roam randomly at the start.
         // With increasing monster aggressivity or *dificulty, the roaming algorithm should change
         // The more aggressive the monster is, the more likely the monster will get close to the player and the more likely it is for the monster to catch the player
@@ -235,7 +232,6 @@ public class AIMovement : MonoBehaviour
         }
     }
 
-    // NEEDS MORE TESTING
     void RoamAroundHouse()
     {
         agent.speed = roamingSpeed;
