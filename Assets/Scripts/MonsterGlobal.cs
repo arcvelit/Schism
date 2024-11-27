@@ -26,4 +26,9 @@ public class MonsterGlobal : MonoBehaviour
         GetComponent<AIMovement>().PlayerExitSafeSpace();
     }
 
+    public void IncreaseDifficulty()
+    {
+        GetComponent<AIMovement>().IncreaseDifficulty();
+    }
+
 }

@@ -139,14 +139,14 @@ public class AIMovement : MonoBehaviour
         // Detection range
         if(distanceToPlayer <= detectionRange)
         {
-            Debug.Log("Monster hears the player close");
+            //Debug.Log("Monster hears the player close");
             return true;
         }
 
         // Hearing range when the player is running, the detection range is bigger
         if(player.GetComponent<Movement>().isRunning && distanceToPlayer <= runningHearRange)
         {
-            Debug.Log("Monster hears the player running");
+            //Debug.Log("Monster hears the player running");
             return true;
         }
 
@@ -156,10 +156,10 @@ public class AIMovement : MonoBehaviour
             RaycastHit hit;
             if(Physics.Raycast(transform.position, directionToPlayer, out hit, seeRange)) 
             {
-                Debug.Log(distanceToPlayer);
+                //Debug.Log(distanceToPlayer);
                 if(hit.transform.parent == player)
                 {
-                    Debug.Log("Monster sees the player");
+                    //Debug.Log("Monster sees the player");
                     return true;
                 }
             }
@@ -277,6 +277,7 @@ public class AIMovement : MonoBehaviour
             yield return null;
         }
 
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("MainMenu");
     }
 
