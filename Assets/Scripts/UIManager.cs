@@ -76,10 +76,10 @@ public class UIManager : MonoBehaviour
         interactionlabel.text = "";
         staminaBar.value = 100;
         crosshair.text = CROSSHAIR_CHAR;
-        batteryCounter.text = "x00";
+        batteryCounter.text = "x01";
         manuscriptsCounter.text = "00";
 
-        if (Instance == null)
+        if (Instance == null)        
             Instance = this;
         else
             Destroy(gameObject);
