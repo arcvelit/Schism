@@ -10,7 +10,7 @@
 ![House_Inside](https://github.com/user-attachments/assets/272132dd-1a7d-4847-a306-319eac2ebf50)
 ![School](https://github.com/user-attachments/assets/99cb4431-d771-40f2-abee-a7b7b6067371)
 ![Church](https://github.com/user-attachments/assets/b82d0eb5-e813-4c3f-a705-a418d1670413)
-![Church_Inside](https://github.com/user-attachments/assets/c593fc21-bb52-4d93-aad8-580e70afffed)
+![Church_Inside](https://github.com/user-attachments/assets/3b47eb4b-391b-4416-ac00-f8f39d0b0f44)
 ![Villa](https://github.com/user-attachments/assets/be6ec22e-f770-4b5b-bbae-e947de1966f0)
 ![Villa_Inside](https://github.com/user-attachments/assets/e35c34c8-de93-4893-8b11-bd36b4a51519)
 ![River](https://github.com/user-attachments/assets/d6fb4f37-2e39-4b9c-a7d5-260078df4f2c)
