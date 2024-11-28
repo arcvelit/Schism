@@ -11,14 +11,14 @@ public class InventoryManager : MonoBehaviour
 
     public static int PUZZLE_OBJECTIVE = 10;
     public static int BATTERY_CAP = 99;
-    public int batteries = 0;
-    public int manuscripts = 0;
+    public int batteries;
+    public int manuscripts;
 
     public bool ACHIEVED_OBJECTIVE => manuscripts == PUZZLE_OBJECTIVE;
 
     void Start()
     {
-        lightTime = LIGHT_CAP_SEC;
+        lightTime = 0;
     }
 
     void Awake()
@@ -64,7 +64,7 @@ public class InventoryManager : MonoBehaviour
     {
         lightTime -= Time.deltaTime;
 
-        if (lightTime < 0)
+        if (lightTime <= 0)
         {
             ConsumeBattery();
         }

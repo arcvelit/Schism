@@ -56,7 +56,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -65,7 +65,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.5111122
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -118,8 +118,8 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1
+      time: 0.23622131
+      value: 0.94179916
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1568,7 +1568,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LIGHT_CAP_SEC: 30
   lightTime: 0
-  batteries: 0
+  batteries: 1
   manuscripts: 0
 --- !u!114 &-6912609622671649695
 MonoBehaviour:
