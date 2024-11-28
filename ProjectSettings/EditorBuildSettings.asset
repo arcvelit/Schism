@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ControlScene.unity
     guid: fd58fe5891dfab84fb190f4bf6a87371
+  - enabled: 1
+    path: Assets/Scenes/SuccessPanel.unity
+    guid: 5651b5cfc67bfb44bbe2dd5d18be28d9
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

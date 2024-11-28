@@ -11,6 +11,7 @@ public class ProgressGlobal : MonoBehaviour
     private static string ERROR_SCROLL = "";
     private static int deposited;
     private static HashSet<int> booksCollected = new HashSet<int>();
+    private static HashSet<int> difficultyLevels = new HashSet<int> { 2, 5, 7, 10 };
     private static Dictionary<int, string> scrolls = new Dictionary<int, string> { 
         { 1,  "." }, 
         { 2,  "." }, 
@@ -38,7 +39,14 @@ public class ProgressGlobal : MonoBehaviour
     }
 
 
-    public void CollectBookId(int id) => booksCollected.Add(id);
+    public void CollectBookId(int id) 
+    {
+        booksCollected.Add(id);
+        if(difficultyLevels.Contains(InventoryManager.Instance.manuscripts + 1))
+        {
+            MonsterGlobal.Instance.IncreaseDifficulty();
+        }
+    } 
     public bool FoundManuscriptId(int id) => booksCollected.Contains(id);
     public string GetScrollContent(int id)
     {
@@ -48,6 +56,7 @@ public class ProgressGlobal : MonoBehaviour
     public void CheckProgress()
     {
         deposited++;
+        // Update monster difficulty
         if (deposited == InventoryManager.PUZZLE_OBJECTIVE)
         {
             StartCoroutine(RunEndgame());
@@ -60,6 +69,7 @@ public class ProgressGlobal : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("SuccessPanel");
     }
 

@@ -21,8 +21,6 @@ public class PreambleHandler : MonoBehaviour
     
     public string _sceneToLoad;
 
-    private bool _continued = false;
-
     private void Awake()
     {
         _document = GetComponent<UIDocument>();
