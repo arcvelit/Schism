@@ -43,7 +43,7 @@ public class AIMovement : MonoBehaviour
     void Update()
     {
 
-        DebugKeys();
+        //DebugKeys();
 
         animator.SetBool("IsRunning", isChasing);
 
@@ -72,6 +72,7 @@ public class AIMovement : MonoBehaviour
         }
     }
 
+/*
     void DebugKeys()
     {
         if(Input.GetKeyDown(KeyCode.M))
@@ -83,6 +84,7 @@ public class AIMovement : MonoBehaviour
             DecreaseDifficulty();
         }
     }
+*/
 
     public void PlayerInSafeSpace(Vector3 position) 
     {
