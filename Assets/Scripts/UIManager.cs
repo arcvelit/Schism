@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
     public UIDocument scrolls;
     public Button exitButton;
     public Label scrollText;
+    public VisualElement scrollContainer;
 
     public UIDocument messages;
     private Label gameMessages;
@@ -63,6 +64,7 @@ public class UIManager : MonoBehaviour
         {
             PerformScrollViewExit(); 
         });
+        scrollContainer = scrolls.rootVisualElement.Q("ScrollContainer") as VisualElement;
 
         interactionlabel = doc.rootVisualElement.Q("InteractLabel") as Label;
         crosshair = doc.rootVisualElement.Q("CrosshairText") as Label;
@@ -279,7 +281,6 @@ public IEnumerator WriteMessage(string message)
         scrolls.rootVisualElement.style.display = DisplayStyle.Flex;        
 
         scrollText.text = ProgressGlobal.Instance.GetScrollContent(id);
-
     }
 
     public void Blackout()
@@ -288,6 +289,5 @@ public IEnumerator WriteMessage(string message)
         doc.rootVisualElement.style.display = DisplayStyle.None;
     }
 
-    
 
 }
