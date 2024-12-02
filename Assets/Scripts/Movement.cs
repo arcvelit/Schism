@@ -39,6 +39,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(UIManager.messaging) return;
         RaycastHit hit;
         isGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, controller.height / 2 + 0.3f);
         bool hitCeiling = Physics.Raycast(transform.position, Vector3.up, out hit, controller.height / 2 + 0.1f);
@@ -99,6 +100,7 @@ public class Movement : MonoBehaviour
     public void BackToSpawn()
     {
         gameObject.transform.position = spawnPoint.position;
+        gameObject.transform.rotation = spawnPoint.rotation;
     }
 
 

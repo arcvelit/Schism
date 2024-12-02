@@ -1,13 +1,14 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
-
-
+    
     public static string CROSSHAIR_CHAR = "•";
 
     public static bool messaging;
@@ -34,6 +35,12 @@ public class UIManager : MonoBehaviour
     private Label manuscriptsCounter;
     private VisualElement batteryImage;
 
+    public UIDocument pauseMenu;
+    private Button resumeButton;
+    private Button returnButton;
+
+    public UIDocument map;
+    
     private ProgressBar staminaBar;
 
     public Texture2D battery0;
@@ -42,6 +49,8 @@ public class UIManager : MonoBehaviour
     public Texture2D battery3;
 
     public static bool inScrollView;
+    public static bool isPaused;
+    public static bool isMapOpened;
 
     void Start()
     {
@@ -56,6 +65,20 @@ public class UIManager : MonoBehaviour
 
         Color newColor = new Color(0f, 0f, 0f, 0.0f);
         gameMessageContainer.style.backgroundColor = new StyleColor(newColor);
+        
+        map.rootVisualElement.style.display = DisplayStyle.None;
+        
+        pauseMenu.rootVisualElement.style.display = DisplayStyle.None;
+        resumeButton = pauseMenu.rootVisualElement.Q("ResumeButton") as Button;
+        resumeButton.RegisterCallback<ClickEvent>(e =>
+        {
+            ResumeGame();
+        });
+        returnButton = pauseMenu.rootVisualElement.Q("MainMenuButton") as Button;
+        returnButton.RegisterCallback<ClickEvent>(e =>
+        {
+            PerformGameExit();
+        });
 
         scrolls.rootVisualElement.style.display = DisplayStyle.None;
         scrollText = scrolls.rootVisualElement.Q("ScrollText") as Label;
@@ -128,19 +151,30 @@ public class UIManager : MonoBehaviour
 
     void Update() 
     {
-        if (lookingatitem && Input.GetKeyDown(KeyCode.E)) 
+        if (isPaused) return;
+        if ((lookingatitem && Input.GetKeyDown(KeyCode.E)) && !isMapOpened) 
         {
             lookatObject.Collect();
         }
         
-        if (lookingathousedoor && Input.GetKeyDown(KeyCode.E)) 
+        if ((lookingathousedoor && Input.GetKeyDown(KeyCode.E)) && !isMapOpened) 
         {
             lookatHouseDoor.Interact();
         }
 
-        if (lookingataltar && Input.GetKeyDown(KeyCode.E)) 
+        if ((lookingataltar && Input.GetKeyDown(KeyCode.E)) && !isMapOpened) 
         {
             lookatAltar.Interact();
+        }
+
+        if (Input.GetKeyDown(KeyCode.M) && !inScrollView)
+        {
+            ToggleMap();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseGame();
         }
     }
 
@@ -254,6 +288,26 @@ public IEnumerator WriteMessage(string message)
         PlayerSounds.Instance.StopTyping();
     }
 
+    public void ToggleMap()
+    {
+        PlayerSounds.Instance.PlayBookTake();
+        if (isMapOpened)
+        {
+            //Map quit
+            map.rootVisualElement.style.display = DisplayStyle.None;
+            Time.timeScale = 1;
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            //Map open
+            map.rootVisualElement.style.display = DisplayStyle.Flex;
+            Time.timeScale = 0;
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
+        }
+        isMapOpened = !isMapOpened;
+    }
+
     public void PerformScrollViewExit()
     {
         Time.timeScale = 1;
@@ -268,6 +322,32 @@ public IEnumerator WriteMessage(string message)
 
         PlayerSounds.Instance.PlayBookClose();
 
+    }
+
+    public void PerformGameExit()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MainMenu");
+        isPaused = false;
+    }
+
+    public void ResumeGame()
+    {
+        if (!inScrollView && !isMapOpened)
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            Time.timeScale = 1;
+        }
+        pauseMenu.rootVisualElement.style.display = DisplayStyle.None;
+        isPaused = false;
+    }
+
+    public void PauseGame()
+    {
+        pauseMenu.rootVisualElement.style.display = DisplayStyle.Flex;
+        isPaused = true;
+        Time.timeScale = 0;
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
     }
 
     public void PerformScrollViewEnter(int id)
@@ -288,6 +368,9 @@ public IEnumerator WriteMessage(string message)
         StartCoroutine(IncreaseAlpha(1.0f, 0.2f));
         doc.rootVisualElement.style.display = DisplayStyle.None;
     }
+
+    public bool blockInputs => inScrollView || isPaused || isMapOpened;
+
 
 
 }

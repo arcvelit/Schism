@@ -12,6 +12,8 @@ public class MainMenuOperations : MonoBehaviour
     private Button _startButton;
 
     private Button _controlButton;
+    
+    private Button _exitButton;
 
     public string _nextScene;
 
@@ -25,6 +27,9 @@ public class MainMenuOperations : MonoBehaviour
         
         _controlButton = _document.rootVisualElement.Q("SettingsButton") as Button;
         _controlButton.RegisterCallback<ClickEvent>(OnControlClick);
+        
+        _exitButton = _document.rootVisualElement.Q("ExitButton") as Button;
+        _exitButton.RegisterCallback<ClickEvent>(OnExitClick);
     }
 
     private void OnDisable()
@@ -41,6 +46,11 @@ public class MainMenuOperations : MonoBehaviour
     private void OnControlClick(ClickEvent ce)
     {
         SceneManager.LoadScene(_controlScene);
+    }
+
+    private void OnExitClick(ClickEvent ce)
+    {
+        Application.Quit();
     }
     // Start is called before the first frame update
     void Start()

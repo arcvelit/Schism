@@ -1,0 +1,5 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:VisualElement name="Container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.86);">
+        <engine:VisualElement name="Map" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Art/Picture1.jpg?fileID=2800000&amp;guid=d550ab808bbd7f0458d3bf62d9f9f6bf&amp;type=3#Picture1&quot;); align-items: center; background-size: 80% 80%; -unity-background-image-tint-color: rgb(192, 192, 192);" />
+    </engine:VisualElement>
+</engine:UXML>

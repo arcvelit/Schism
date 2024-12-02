@@ -20,6 +20,8 @@ public class Torch : MonoBehaviour
 
     void Update()
     {
+        if (UIManager.Instance.blockInputs) return;
+        
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (torchLitty) // Toggle off

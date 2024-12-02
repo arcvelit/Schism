@@ -15,7 +15,6 @@ public class AIMovement : MonoBehaviour
     public float runningHearRange = 10f;
     public float seeRange = 10f;
     public float seeAngle = 30f;
-    public float soundDetectionRange = 15f;
     public float timeInactive = 1f;
     private float roamningTimer = 0f;
 

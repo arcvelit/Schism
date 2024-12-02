@@ -17,7 +17,7 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (UIManager.inScrollView) return; 
+        if (UIManager.Instance.blockInputs) return; 
         
         float mouseX = Input.GetAxis("Mouse X") * sensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
