@@ -1,13 +1,14 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
-
-
+    
     public static string CROSSHAIR_CHAR = "•";
 
     public static bool messaging;
@@ -34,6 +35,11 @@ public class UIManager : MonoBehaviour
     private Label manuscriptsCounter;
     private VisualElement batteryImage;
 
+    public UIDocument pauseMenu;
+    private Button resumeButton;
+    private Button returnButton;
+    
+
     private ProgressBar staminaBar;
 
     public Texture2D battery0;
@@ -42,6 +48,7 @@ public class UIManager : MonoBehaviour
     public Texture2D battery3;
 
     public static bool inScrollView;
+    public static bool isPaused;
 
     void Start()
     {
@@ -56,6 +63,18 @@ public class UIManager : MonoBehaviour
 
         Color newColor = new Color(0f, 0f, 0f, 0.0f);
         gameMessageContainer.style.backgroundColor = new StyleColor(newColor);
+        
+        pauseMenu.rootVisualElement.style.display = DisplayStyle.None;
+        resumeButton = pauseMenu.rootVisualElement.Q("ResumeButton") as Button;
+        resumeButton.RegisterCallback<ClickEvent>(e =>
+        {
+            ResumeGame();
+        });
+        returnButton = pauseMenu.rootVisualElement.Q("MainMenuButton") as Button;
+        returnButton.RegisterCallback<ClickEvent>(e =>
+        {
+            PerformGameExit();
+        });
 
         scrolls.rootVisualElement.style.display = DisplayStyle.None;
         scrollText = scrolls.rootVisualElement.Q("ScrollText") as Label;
@@ -128,6 +147,7 @@ public class UIManager : MonoBehaviour
 
     void Update() 
     {
+        if (isPaused) return;
         if (lookingatitem && Input.GetKeyDown(KeyCode.E)) 
         {
             lookatObject.Collect();
@@ -141,6 +161,11 @@ public class UIManager : MonoBehaviour
         if (lookingataltar && Input.GetKeyDown(KeyCode.E)) 
         {
             lookatAltar.Interact();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseGame();
         }
     }
 
@@ -270,6 +295,35 @@ public IEnumerator WriteMessage(string message)
 
     }
 
+    public void PerformGameExit()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MainMenu");
+        isPaused = false;
+    }
+
+    public void ResumeGame()
+    {
+        if (!inScrollView)
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            Time.timeScale = 1;
+        }
+        pauseMenu.rootVisualElement.style.display = DisplayStyle.None;
+        isPaused = false;
+    }
+
+    public void PauseGame()
+    {
+        pauseMenu.rootVisualElement.style.display = DisplayStyle.Flex;
+        isPaused = true;
+        if (!inScrollView)
+        {
+            Time.timeScale = 0;
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
     public void PerformScrollViewEnter(int id)
     {
         Time.timeScale = 0;
@@ -288,6 +342,9 @@ public IEnumerator WriteMessage(string message)
         StartCoroutine(IncreaseAlpha(1.0f, 0.2f));
         doc.rootVisualElement.style.display = DisplayStyle.None;
     }
+
+    public bool blockInputs => inScrollView || isPaused;
+
 
 
 }
