@@ -1,6 +1,7 @@
 # Schism
+[Play Schism on itch.io](https://itch.io/)
 
-
+## Development
 [Download the .unitypackage files (readonly link)](https://drive.google.com/drive/folders/1nF_38YFOg_2BmNwjD4J-SXiJEpzhhCxk)
 
 ## Gallery
