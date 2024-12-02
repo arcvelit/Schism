@@ -5,6 +5,8 @@
 [Download the .unitypackage files (readonly link)](https://drive.google.com/drive/folders/1nF_38YFOg_2BmNwjD4J-SXiJEpzhhCxk)
 
 ## Gallery
+
+![main](https://github.com/user-attachments/assets/043c8535-4768-441f-a959-ed697ad30abc)
 ![Map](https://github.com/user-attachments/assets/3459bfb0-f44e-490f-ab59-81a3cae2ade6)
 ![House](https://github.com/user-attachments/assets/cf00584e-c2d3-4413-9084-e4b502f0a477)
 ![House_Inside_1](https://github.com/user-attachments/assets/8feb2356-661a-4ed3-a1fd-828b58da1837)
