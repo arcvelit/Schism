@@ -2837,12 +2837,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  roamingSpeed: 3.5
+  roamingSpeed: 4
   roamingRange: 20
   chaseSpeed: 6.5
-  detectionRange: 10
-  runningHearRange: 15
-  seeRange: 15
+  detectionRange: 15
+  runningHearRange: 30
+  seeRange: 20
   seeAngle: 30
   soundDetectionRange: 15
   timeInactive: 3
