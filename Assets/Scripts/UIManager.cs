@@ -38,8 +38,9 @@ public class UIManager : MonoBehaviour
     public UIDocument pauseMenu;
     private Button resumeButton;
     private Button returnButton;
-    
 
+    public UIDocument map;
+    
     private ProgressBar staminaBar;
 
     public Texture2D battery0;
@@ -49,6 +50,7 @@ public class UIManager : MonoBehaviour
 
     public static bool inScrollView;
     public static bool isPaused;
+    public static bool isMapOpened;
 
     void Start()
     {
@@ -63,6 +65,8 @@ public class UIManager : MonoBehaviour
 
         Color newColor = new Color(0f, 0f, 0f, 0.0f);
         gameMessageContainer.style.backgroundColor = new StyleColor(newColor);
+        
+        map.rootVisualElement.style.display = DisplayStyle.None;
         
         pauseMenu.rootVisualElement.style.display = DisplayStyle.None;
         resumeButton = pauseMenu.rootVisualElement.Q("ResumeButton") as Button;
@@ -148,19 +152,24 @@ public class UIManager : MonoBehaviour
     void Update() 
     {
         if (isPaused) return;
-        if (lookingatitem && Input.GetKeyDown(KeyCode.E)) 
+        if ((lookingatitem && Input.GetKeyDown(KeyCode.E)) && !isMapOpened) 
         {
             lookatObject.Collect();
         }
         
-        if (lookingathousedoor && Input.GetKeyDown(KeyCode.E)) 
+        if ((lookingathousedoor && Input.GetKeyDown(KeyCode.E)) && !isMapOpened) 
         {
             lookatHouseDoor.Interact();
         }
 
-        if (lookingataltar && Input.GetKeyDown(KeyCode.E)) 
+        if ((lookingataltar && Input.GetKeyDown(KeyCode.E)) && !isMapOpened) 
         {
             lookatAltar.Interact();
+        }
+
+        if (Input.GetKeyDown(KeyCode.M) && !inScrollView)
+        {
+            ToggleMap();
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -279,6 +288,26 @@ public IEnumerator WriteMessage(string message)
         PlayerSounds.Instance.StopTyping();
     }
 
+    public void ToggleMap()
+    {
+        PlayerSounds.Instance.PlayBookTake();
+        if (isMapOpened)
+        {
+            //Map quit
+            map.rootVisualElement.style.display = DisplayStyle.None;
+            Time.timeScale = 1;
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            //Map open
+            map.rootVisualElement.style.display = DisplayStyle.Flex;
+            Time.timeScale = 0;
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
+        }
+        isMapOpened = !isMapOpened;
+    }
+
     public void PerformScrollViewExit()
     {
         Time.timeScale = 1;
@@ -304,7 +333,7 @@ public IEnumerator WriteMessage(string message)
 
     public void ResumeGame()
     {
-        if (!inScrollView)
+        if (!inScrollView && !isMapOpened)
         {
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1;
@@ -317,11 +346,8 @@ public IEnumerator WriteMessage(string message)
     {
         pauseMenu.rootVisualElement.style.display = DisplayStyle.Flex;
         isPaused = true;
-        if (!inScrollView)
-        {
-            Time.timeScale = 0;
-            UnityEngine.Cursor.lockState = CursorLockMode.None;
-        }
+        Time.timeScale = 0;
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
     }
 
     public void PerformScrollViewEnter(int id)
@@ -343,7 +369,7 @@ public IEnumerator WriteMessage(string message)
         doc.rootVisualElement.style.display = DisplayStyle.None;
     }
 
-    public bool blockInputs => inScrollView || isPaused;
+    public bool blockInputs => inScrollView || isPaused || isMapOpened;
 
 
 
