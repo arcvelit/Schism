@@ -31,15 +31,15 @@ namespace Character
 
         public void OnSprint(InputAction.CallbackContext context)
         {
-            // if (context.performed)
-            // {
-            //     _playableCharacter.RequestSprint(true);
-            // }
-            //
-            // if (context.canceled)
-            // {
-            //     _playableCharacter.RequestSprint(false);
-            // }
+            if (context.performed)
+            {
+                _playableCharacter.RequestSprint(true);
+            }
+            
+            if (context.canceled)
+            {
+                _playableCharacter.RequestSprint(false);
+            }
         }
 
         public void OnInteract(InputAction.CallbackContext context)
