@@ -466,15 +466,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 6
   sprintSpeed: 9
-  horizontalSensitivity: 200
-  verticalSensitivity: 200
+  maxStamina: 5
   jumpForce: 5
   jumpCooldown: 0.25
+  gamepadHorizontalSensitivity: 200
+  gamepadVerticalSensitivity: 200
+  mouseSensitivity: 0.1
   playerCamera: {fileID: 23947946}
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 1032
   _movementSpeed: 0
+  _stamina: 0
 --- !u!4 &1010681016
 Transform:
   m_ObjectHideFlags: 0

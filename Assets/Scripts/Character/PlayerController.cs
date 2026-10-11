@@ -18,7 +18,17 @@ namespace Character
         public void OnLook(InputAction.CallbackContext context)
         {
             Vector2 look = context.ReadValue<Vector2>();
-            _playableCharacter.RequestLook(look);
+
+            // Mouse delta is already a per-frame displacement. A gamepad stick is
+            // a continuous rate input, so the character handles the two differently.
+            if (context.control.device is Mouse)
+            {
+                _playableCharacter.RequestMouseLook(look);
+            }
+            else
+            {
+                _playableCharacter.RequestGamepadLook(look);
+            }
         }
 
         public void OnJump(InputAction.CallbackContext context)
