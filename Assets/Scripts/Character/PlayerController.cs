@@ -8,6 +8,7 @@ namespace Character
     {
         private PlayerInput _playerInput;
         private PlayableCharacter _playableCharacter;
+        private InteractionController _interactionController;
 
         public void OnMove(InputAction.CallbackContext context)
         {
@@ -56,7 +57,7 @@ namespace Character
         {
             if (context.performed)
             {
-                // _playableCharacter.RequestInteract();
+                _interactionController.RequestInteract();
             }
         }
 
@@ -87,7 +88,13 @@ namespace Character
             _playableCharacter = GetComponent<PlayableCharacter>();
             if (!_playableCharacter)
             {
-                Debug.LogError("No character found");
+                Debug.LogError("No playable character found");
+            }
+            
+            _interactionController = GetComponent<InteractionController>();
+            if (!_interactionController)
+            {
+                Debug.LogError("No interaction controller found");
             }
         }
 

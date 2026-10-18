@@ -42,7 +42,7 @@ namespace Character
         public float _movementSpeed;
         private float _xRotation;
         private float _yawRotation;
-        private const float CharacterHeight = 1.71f; // Average human height
+        private const float CharacterHeight = 2; // Average human height
         public float _stamina;
         
 

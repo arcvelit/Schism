@@ -52,15 +52,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pick Up",
-                    "type": "Button",
-                    "id": "f24413af-4a8b-4b9b-be7f-401154439d88",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Toggle Flaslight",
                     "type": "Button",
                     "id": "f53ab519-5897-4327-8559-fb70e0556622",
@@ -222,28 +213,6 @@
                     "processors": "",
                     "groups": ";Controller;Playstation",
                     "action": "Toggle Flaslight",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a5cb2fc1-470d-47ad-887f-6d9aae065f73",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";KBM",
-                    "action": "Pick Up",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "eb36057e-1ca7-48a5-bd6b-37075f67f71f",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Controller;Playstation",
-                    "action": "Pick Up",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
